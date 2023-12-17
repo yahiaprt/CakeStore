@@ -5,6 +5,7 @@ use App\Http\Controllers\addProductController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchProductsController;
 use App\Http\Controllers\sellerProfilController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
@@ -54,7 +55,17 @@ Route::get('/productGrid', [addProductController::class, 'productGridView'])->na
 Route::get('/productDetails/{id}', [addProductController::class, 'productDetailsView'])->name('productDetails');
 Route::get('/sellerProfil', [sellerProfilController::class, 'sellerProfileView'])->name('sellerProfileView');
 
+
+
 Route::get('/home', [homeController::class, 'homeView'])->name('home');
+Route::get('/searchProductName', [SearchProductsController::class, 'searchProductName'])->name('searchProductName');
+Route::get('/searchCategoryProductName{type}', [SearchProductsController::class, 'searchCategoryProductName'])->name('searchCategoryProductName');
+Route::post('/searchPriceProductName', [SearchProductsController::class, 'searchPriceProductName'])->name('searchPriceProductName');
+Route::post('/searchRatingProductName', [SearchProductsController::class, 'searchRatingProductName'])->name('searchRatingProductName');
+
+
+
+Route::get('/searchProduct', [SearchProductsController::class, 'searchProduct'])->name('searchProduct');
 
 
  
