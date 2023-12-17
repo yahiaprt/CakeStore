@@ -10,4 +10,12 @@ class homeController extends Controller
   {
     return view('marketplace.home');
   }
+
+public function searchProduct($request)
+{
+    $productName = $request->input('product_name');
+
+    return view('marketplace.searchProduct');
+
+}
 }
