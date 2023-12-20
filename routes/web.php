@@ -62,6 +62,7 @@ Route::get('/searchProductName', [SearchProductsController::class, 'searchProduc
 Route::get('/searchCategoryProductName{type}', [SearchProductsController::class, 'searchCategoryProductName'])->name('searchCategoryProductName');
 Route::post('/searchPriceProductName', [SearchProductsController::class, 'searchPriceProductName'])->name('searchPriceProductName');
 Route::post('/searchRatingProductName', [SearchProductsController::class, 'searchRatingProductName'])->name('searchRatingProductName');
+ 
 
 
 

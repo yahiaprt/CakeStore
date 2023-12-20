@@ -25,6 +25,9 @@ class products extends Model
         'image_data',
         'purchased_number',
         'stock'
+        ,'category_id'
+        ,'title'
+        ,'description'
         // Add other attributes as needed
     ];
  

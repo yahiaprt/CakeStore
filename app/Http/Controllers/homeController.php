@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\products;
 
 class homeController extends Controller
 {
@@ -11,11 +12,13 @@ class homeController extends Controller
     return view('marketplace.home');
   }
 
-public function searchProduct($request)
-{
+  public function searchProduct($request)
+  {
     $productName = $request->input('product_name');
 
     return view('marketplace.searchProduct');
+ 
+   }
 
-}
+ 
 }

@@ -43,6 +43,83 @@
 
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="marketplace/assets/css/backgrounds/bg-4.css">
+
+
+
+
+
+
+
+ 
+
+	<!-- GOOGLE FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet"> 
+
+	<link href="../../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+
+	<!-- PLUGINS CSS STYLE -->
+	<link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+	<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet">
+
+	<!-- Ekka CSS -->
+ 
+	<!-- FAVICON -->
+	<link href="assets/img/favicon.png" rel="shortcut icon">
+
+
+
+
+
+
+
+
+
+	<style>
+  .image-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap; /* Prevents images from wrapping to the next line */
+  }
+
+  .horizontal-scroll-wrapper {
+    display: flex; /* Enable flex container */
+  }
+
+  .horizontal-scroll-wrapper img {
+    flex: 0 0 auto; /* Don't grow or shrink the images */
+    margin-right: 10px; /* Add some space between images */
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+	
+
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><script type="text/javascript" charset="UTF-8" src="../../../../../www.gstatic.com/charts/%25%7bversion%7d/loader.html"></script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style id="infiniteslide1701803717203d00_style">@keyframes infiniteslide1701803717203d00{from {transform:translate3d(0,0,0);}to {transform:translate3d(-1750px,0,0);}}</style><style id="infiniteslide170283156642518d4_style">@keyframes infiniteslide170283156642518d4{from {transform:translate3d(0,0,0);}to {transform:translate3d(-1750px,0,0);}}</style></head>
 
 <body>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\products;
+
 
 use Illuminate\Http\Request;
 
 class SearchProductsController extends Controller
 {
+
+ 
     public function searchProductName(Request $request)
     {
          $selectedColors = $request->input('colors');

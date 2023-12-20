@@ -1,0 +1,165 @@
+<style>
+ 
+    #productDetails.modal-add-contact .modal-dialog {
+        max-width: 90% !important; /* Adjust the width as needed */
+    }
+ 
+
+    /* Custom styles for the modal */
+    .modal-add-contact {
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    }
+
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .ec-content-wrapper {
+        padding: 20px;
+    }
+
+    .breadcrumb-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .breadcrumb-wrapper h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .breadcrumb-wrapper a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .breadcrumb-wrapper a:hover {
+        text-decoration: underline;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #217dbb;
+    }
+
+    .card-header h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .product-detail {
+        margin-top: 20px;
+    }
+
+    .product-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .product-rate {
+        color: #f39c12;
+        margin-bottom: 10px;
+    }
+
+    .product-desc {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    .ec-ofr h6 {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .ec-ofr ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ec-ofr ul li {
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .product-size,
+    .product-color {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    .product-size span,
+    .product-color span {
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .product-stock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .stock,
+    .product-stock p {
+        font-size: 14px;
+    }
+
+    .review-rating {
+        margin-top: 20px;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nav-item {
+        margin-bottom: -1px;
+    }
+
+    .nav-link {
+        border: 1px solid transparent;
+        border-radius: 5px 5px 0 0;
+        color: #333;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+        background-color: #eee;
+        border-color: #ddd #ddd transparent;
+    }
+
+    .tab-pane {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 0 0 5px 5px;
+        margin-top: -1px;
+    }
+
+    .features {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    /* Add more styles as needed */
+</style>
