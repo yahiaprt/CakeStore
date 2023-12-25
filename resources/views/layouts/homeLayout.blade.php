@@ -43,6 +43,83 @@
 
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="marketplace/assets/css/backgrounds/bg-4.css">
+
+
+
+
+
+
+
+ 
+
+	<!-- GOOGLE FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet"> 
+
+	<link href="../../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+
+	<!-- PLUGINS CSS STYLE -->
+	<link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+	<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet">
+
+	<!-- Ekka CSS -->
+ 
+	<!-- FAVICON -->
+	<link href="assets/img/favicon.png" rel="shortcut icon">
+
+
+
+
+
+
+
+
+
+	<style>
+  .image-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap; /* Prevents images from wrapping to the next line */
+  }
+
+  .horizontal-scroll-wrapper {
+    display: flex; /* Enable flex container */
+  }
+
+  .horizontal-scroll-wrapper img {
+    flex: 0 0 auto; /* Don't grow or shrink the images */
+    margin-right: 10px; /* Add some space between images */
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+	
+
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><script type="text/javascript" charset="UTF-8" src="../../../../../www.gstatic.com/charts/%25%7bversion%7d/loader.html"></script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style id="infiniteslide1701803717203d00_style">@keyframes infiniteslide1701803717203d00{from {transform:translate3d(0,0,0);}to {transform:translate3d(-1750px,0,0);}}</style><style id="infiniteslide170283156642518d4_style">@keyframes infiniteslide170283156642518d4{from {transform:translate3d(0,0,0);}to {transform:translate3d(-1750px,0,0);}}</style></head>
 
 <body>
@@ -214,44 +291,92 @@
     }
 </style>
 <form class="ec-btn-group-form" action="/searchProductName">
+    <div class="d-flex align-items-center">
+        <div>
+            <div class="form-check">
+                <input type="radio" id="searchProduct" name="searchType" value="product">
+                <label for="searchProduct">Search for Product</label>
+            </div>
 
-<div>
+            <div class="form-check">
+                <input type="radio" id="searchSeller" name="searchType" value="seller" checked>
+                <label for="searchSeller">Search for Seller</label>
+            </div>
+        </div>
 
-<div class="align-self-center">
-                            <div class="header-search">
-                                    <input class="form-control ec-search-bar" placeholder="Search products..." type="text" name="product_name">
-                                    <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
-
-
-
-
-                                    
-                            </div>
-                        </div>
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="clothes" name="colors[]" value="salle" >
-        <label for="clothes"><a href="#">Salleé</a></label>
-        <span class="checked"></span>
+        <div class="ml-3">
+            <div class="header-search">
+                <input class="form-control ec-search-bar" placeholder="Search products or sellers..." type="text" name="search_query">
+                <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
+            </div>
+        </div>
     </div>
 
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="bags" name="colors[]" value="sucre">
-        <label for="bags"><a href="#">Sucre</a></label>
-        <span class="checked"></span>
+    <div id="productOptions" style="display: none;">
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="clothes" name="colors[]" value="salle">
+            <label for="clothes">Salleé</label>
+        </div>
+
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="bags" name="colors[]" value="sucre">
+            <label for="bags">Sucre</label>
+        </div>
+
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="shoes" name="colors[]" value="all">
+            <label for="shoes">Sucre/Salleé</label>
+        </div>
     </div>
 
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="shoes" name="colors[]" value="all">
-        <label for="shoes"><a href="#">Sucre/Salleé</a></label>
-        <span class="checked"></span>
+    <div id="sellerOptions" style="display: none;">
+        <div class="ec-sidebar-block-item">
+            <label for="sellerRating">Seller Rating:</label>
+            <select id="sellerRating" name="seller_rating">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+                <option value="0">0 star</option>
+
+            </select>
+        </div>
     </div>
-                        
+</form>
 
-</div>
-            </form>
+<style>
+    .form-check {
+        display: inline-block;
+    }
 
+    .form-check {
+        margin-top: 25px; /* Adjusted margin for a more compact look */
+    }
 
+    .ec-sidebar-block-item {
+        margin-top: 25px; /* Adjusted margin for a more compact look */
+    }
 
+    .form-check input[type="radio"],
+    .form-check input[type="checkbox"] {
+        transform: scale(0.4); /* Adjust the scale factor as needed */
+    }
+</style>
+
+<script>
+    document.querySelectorAll('input[name="searchType"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            if (this.value === 'product') {
+                document.getElementById('productOptions').style.display = 'block';
+                document.getElementById('sellerOptions').style.display = 'none'; // Hide seller options for product search
+            } else if (this.value === 'seller') {
+                document.getElementById('productOptions').style.display = 'block'; // Hide product options for seller search
+                document.getElementById('sellerOptions').style.display = 'block';
+            }
+        });
+    });
+</script>
 
 
 

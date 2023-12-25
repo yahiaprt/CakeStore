@@ -1,16 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Product;
+use App\Models\products;
 
+
+use App\Models\seller;
 use Illuminate\Http\Request;
 
 class SearchProductsController extends Controller
 {
+
+  public function storeView($id){
+    dd($id);
+    $seller = seller::find($id);
+    $products = products::all();
+    $products = $products->where('seller_id', $id);
+    return view('marketplace.store',   ['seller' => $seller], ['products' => $products]);
+   }
+
+
+ public function searchmodalProductName($id){
+  $product = products::find($id);
+  return view('marketplace.searchProduct', ['product' => $product]);
+ }
+ 
+       
     public function searchProductName(Request $request)
     {
+
+
+      $searchType = $request->input('searchType');
+
+      if ($searchType === 'product') {
+    
+
+
          $selectedColors = $request->input('colors');
-         $products = Product::query();
+         $products = products::query();
     
          $productName = $request->input('product_name');
 
@@ -30,9 +56,34 @@ class SearchProductsController extends Controller
             });
         }
          $result = $products->get();
+      } elseif ($searchType === 'seller') {
+        $seller = seller::query();
+        $productName = $request->input('product_name');
 
-          return view('marketplace.searchProduct', ['products' => $result]);
-    }
+        $seller->where('name', 'LIKE', "%{$productName}%");
+
+        $rating = $request->input('sellerRating');
+        if($rating == null) {
+          $rating = 0;
+        }
+        if (!empty($selectedColors)) {
+          $seller->where(function ($query) use ($selectedColors) {
+              foreach ($selectedColors as $color) {
+                  $query->orWhere('storeType', 'LIKE', "%{$color}%");
+              }
+          });
+      }
+        $products = products::all();
+        return view('marketplace.searchSeller', ['products' => $products, 'seller' => Seller::where('rating', '>=', $rating)->get()]);
+               
+
+      } else {
+          // Handle other cases
+      }
+
+
+      return view('marketplace.searchProduct', ['products' => $result, 'searchType' => $searchType]); 
+       }
     
 
      public function searchCategoryProductName($categoryType)
@@ -40,7 +91,7 @@ class SearchProductsController extends Controller
 
          
  
-         return view  ('marketplace.searchProduct', ['products' => Product::where('colors', 'LIKE', "%{$categoryType}%")->get()]);
+         return view  ('marketplace.searchProduct', ['products' => products::where('colors', 'LIKE', "%{$categoryType}%")->get()]);
 
       }
 
@@ -48,13 +99,13 @@ class SearchProductsController extends Controller
 
         $minPrice = $request->input("min_price");
         $maxPrice = $request->input("max_price");
-        return view  ('marketplace.searchProduct', ['products' => Product::whereBetween('price', [$minPrice, $maxPrice])->get()]);
+        return view  ('marketplace.searchProduct', ['products' => products::whereBetween('price', [$minPrice, $maxPrice])->get()]);
       }
 
       public function searchRatingProductName(Request $request) {
 
          $rating = $request->input("rating");
-            return view  ('marketplace.searchProduct', ['products' => Product::where('rating', '>=', $rating)->get()]);
+            return view  ('marketplace.searchProduct', ['products' => products::where('rating', '>=', $rating)->get()]);
      
       }
     }

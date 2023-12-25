@@ -62,6 +62,9 @@ class addProductController extends Controller
       'quantity' => $request->input('stock'),
       'seller_id' => $sellerId,
       'image_data' => json_encode($image_data),
+      'category_id' => $sellerId,
+      'title' => $request->input('product_name'),
+      'description' => $request->input('product_name'),
 
     ]);
 
