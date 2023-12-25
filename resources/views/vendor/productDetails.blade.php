@@ -1,6 +1,5 @@
  
-  <div id="productDetailContainer">
-    
+     
     <div class="ec-content-wrapper">
                 <div class="content">
                     <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
@@ -235,4 +234,4 @@
                         </div>
                     </div>
                 </div> <!-- End Content -->
-                </div>
+ 
