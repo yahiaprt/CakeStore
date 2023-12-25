@@ -11,8 +11,7 @@ class SearchProductsController extends Controller
 {
 
   public function storeView($id){
-    dd($id);
-    $seller = seller::find($id);
+     $seller = seller::find($id);
     $products = products::all();
     $products = $products->where('seller_id', $id);
     return view('marketplace.store',   ['seller' => $seller], ['products' => $products]);

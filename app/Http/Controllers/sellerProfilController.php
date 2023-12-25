@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\seller;
+use App\Models\products;
 class sellerProfilController extends Controller
 {
-   
+   public function productsList($id){
+    
+      $seller = seller::find($id);
+      $products = products::all();
+        return view('marketplace.productsList',   ['seller' => $seller], ['products' => $products]);
+    }
     public function sellerProfileView()
     {
         $user = auth()->user();

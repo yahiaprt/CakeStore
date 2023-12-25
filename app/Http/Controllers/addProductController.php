@@ -16,7 +16,7 @@ class addProductController extends Controller
   public function ProductDetailsView($id)
   {
      $product = products::find($id);
-    return view('vendor.productDetails', ['product' => $product]);
+     return view('vendor.productDetails', ['product' => $product]);
   }
 
   public function ProductGridView()
