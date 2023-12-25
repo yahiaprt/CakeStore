@@ -291,44 +291,92 @@
     }
 </style>
 <form class="ec-btn-group-form" action="/searchProductName">
+    <div class="d-flex align-items-center">
+        <div>
+            <div class="form-check">
+                <input type="radio" id="searchProduct" name="searchType" value="product">
+                <label for="searchProduct">Search for Product</label>
+            </div>
 
-<div>
+            <div class="form-check">
+                <input type="radio" id="searchSeller" name="searchType" value="seller" checked>
+                <label for="searchSeller">Search for Seller</label>
+            </div>
+        </div>
 
-<div class="align-self-center">
-                            <div class="header-search">
-                                    <input class="form-control ec-search-bar" placeholder="Search products..." type="text" name="product_name">
-                                    <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
-
-
-
-
-                                    
-                            </div>
-                        </div>
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="clothes" name="colors[]" value="salle" >
-        <label for="clothes"><a href="#">Salleé</a></label>
-        <span class="checked"></span>
+        <div class="ml-3">
+            <div class="header-search">
+                <input class="form-control ec-search-bar" placeholder="Search products or sellers..." type="text" name="search_query">
+                <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
+            </div>
+        </div>
     </div>
 
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="bags" name="colors[]" value="sucre">
-        <label for="bags"><a href="#">Sucre</a></label>
-        <span class="checked"></span>
+    <div id="productOptions" style="display: none;">
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="clothes" name="colors[]" value="salle">
+            <label for="clothes">Salleé</label>
+        </div>
+
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="bags" name="colors[]" value="sucre">
+            <label for="bags">Sucre</label>
+        </div>
+
+        <div class="ec-sidebar-block-item">
+            <input type="checkbox" id="shoes" name="colors[]" value="all">
+            <label for="shoes">Sucre/Salleé</label>
+        </div>
     </div>
 
-    <div class="ec-sidebar-block-item">
-        <input type="checkbox" id="shoes" name="colors[]" value="all">
-        <label for="shoes"><a href="#">Sucre/Salleé</a></label>
-        <span class="checked"></span>
+    <div id="sellerOptions" style="display: none;">
+        <div class="ec-sidebar-block-item">
+            <label for="sellerRating">Seller Rating:</label>
+            <select id="sellerRating" name="seller_rating">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+                <option value="0">0 star</option>
+
+            </select>
+        </div>
     </div>
-                        
+</form>
 
-</div>
-            </form>
+<style>
+    .form-check {
+        display: inline-block;
+    }
 
+    .form-check {
+        margin-top: 25px; /* Adjusted margin for a more compact look */
+    }
 
+    .ec-sidebar-block-item {
+        margin-top: 25px; /* Adjusted margin for a more compact look */
+    }
 
+    .form-check input[type="radio"],
+    .form-check input[type="checkbox"] {
+        transform: scale(0.4); /* Adjust the scale factor as needed */
+    }
+</style>
+
+<script>
+    document.querySelectorAll('input[name="searchType"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            if (this.value === 'product') {
+                document.getElementById('productOptions').style.display = 'block';
+                document.getElementById('sellerOptions').style.display = 'none'; // Hide seller options for product search
+            } else if (this.value === 'seller') {
+                document.getElementById('productOptions').style.display = 'block'; // Hide product options for seller search
+                document.getElementById('sellerOptions').style.display = 'block';
+            }
+        });
+    });
+</script>
 
 
 
