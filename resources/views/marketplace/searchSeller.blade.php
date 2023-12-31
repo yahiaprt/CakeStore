@@ -5,7 +5,9 @@
 <html lang="en">
 
 <header  >
-  
+  <!-- Include this in your HTML head to get the CSRF token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
      <!-- Include Bootstrap CSS -->
  
 
@@ -484,9 +486,8 @@
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
                                                 <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="assets/images/product-image/6_1.jpg" alt="Product">
-                                                    <img class="hover-image" src="assets/images/product-image/6_2.jpg" alt="Product">
-                                                </a>
+                                                <img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="Product Image" style="max-width: 100%; height: auto;">
+                                                 </a>
                                                 <span class="percentage">20%</span>
                                                 <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
                                                 <div class="ec-pro-actions">
@@ -497,8 +498,8 @@
                                             <div class="ec-pro-loader"></div></div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Round Neck
-                                                    T-Shirt</a></h5>
+                                            <h5 class="ec-pro-title">
+                                                <a href="product-left-sidebar.html">{{$product->product_name}}  </a></h5>
                                             <div class="ec-pro-rating">
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star fill"></i>
@@ -507,37 +508,29 @@
                                                 <i class="ecicon eci-star"></i>
                                             </div>
                                             <span class="ec-price">
-                                                <span class="old-price">$27.00</span>
-                                                <span class="new-price">$22.00</span>
-                                                <a
-                                            
-     data-bs-toggle="modal"
-    data-bs-target="#productDetailModal{{ $product->id }}"
-    class="btn btn-outline-success details-btn"
->
-    Details
-</a>
+    <span class="new-price">{{ $product->price }}</span>
 
-                 
-@dump($product->id)
-                                                                    </span>
+ 
+
  
                                             <div class="ec-pro-option">
                                                 <div class="ec-pro-color">
-                                                    <span class="ec-pro-opt-label">Color</span>
-                                                    <ul class="ec-opt-swatch ec-change-img">
-                                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/6_1.jpg" data-src-hover="assets/images/product-image/6_1.jpg" data-tooltip="Gray"><span style="background-color:#e8c2ff;"></span></a></li>
-                                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/6_2.jpg" data-src-hover="assets/images/product-image/6_2.jpg" data-tooltip="Orange"><span style="background-color:#9cfdd5;"></span></a></li>
-                                                    </ul>
+                                                <a
+        data-bs-toggle="modal"
+        data-bs-target="#productDetailModal{{ $product->id }}"
+        class="btn btn-outline-success details-btn"
+    >
+        Details
+    </a>
+
                                                 </div>
                                                 <div class="ec-pro-size">
-                                                    <span class="ec-pro-opt-label">Size</span>
-                                                    <ul class="ec-opt-size">
-                                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$25.00" data-new="$20.00" data-tooltip="Small">S</a></li>
-                                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00" data-new="$22.00" data-tooltip="Medium">M</a></li>
-                                                        <li><a href="#" class="ec-opt-sz" data-old="$30.00" data-new="$25.00" data-tooltip="Large">X</a></li>
-                                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00" data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
-                                                    </ul>
+                                                <span style="margin-right: 5px;">Quantity:</span>
+    
+    <!-- Add input for quantity -->
+    <input type="number" name="quantity" id="quantity{{ $product->id }}" class="form-control" value="1" min="1" style="width: 100px; padding: 4px;">
+</span>
+
                                                 </div>
                                             </div>
                                         </div>

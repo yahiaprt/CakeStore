@@ -55,8 +55,7 @@ Route::get('/productGrid', [addProductController::class, 'productGridView'])->na
 Route::get('/productDetails/{id}', [addProductController::class, 'productDetailsView'])->name('productDetails');
 Route::get('/sellerProfil', [sellerProfilController::class, 'sellerProfileView'])->name('sellerProfileView');
 Route::get('/productsList/{id}', [sellerProfilController::class, 'productsList'])->name('productsList');
-
-
+ Route::post('/insert-products', [homeController::class, 'insertProducts'])->name('insertProducts');;
 
 
 Route::get('/home', [homeController::class, 'homeView'])->name('home');
