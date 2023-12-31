@@ -25,39 +25,7 @@
                     <button class="ec-close">×</button>
                 </div>
                 <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="assets/images/product-image/6_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="assets/images/product-image/12_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="assets/images/product-image/3_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
+                    
                 </ul>
             </div>
             <div class="ec-cart-bottom">

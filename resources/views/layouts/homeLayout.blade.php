@@ -70,6 +70,7 @@
 
 
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 
@@ -936,83 +937,122 @@
             </div>
         </div>
         <!-- ekka mobile Menu End -->
-    </header>
-    <!-- Header End  -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay" style="display: none;"></div>
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="marketplace/assets/images/product-image/6_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="marketplace/assets/images/product-image/12_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="marketplace/assets/images/product-image/3_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                <li><a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="marketplace/assets/images/product-image/1_1.jpg" alt="product"></a><div class="ec-pro-content"><a href="product-left-sidebar.html" class="cart_pro_title">Cute Baby
-                                                    Toy's</a><span class="cart-price"><span>$30.00</span> x 1</span><div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div><input class="qty-input" type="text" name="ec_qtybtn" value="1"><div class="inc ec_qtybtn">+</div></div><a href="javascript:void(0)" class="remove">×</a></div></li><li><a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="marketplace/assets/images/product-image/1_1.jpg" alt="product"></a><div class="ec-pro-content"><a href="product-left-sidebar.html" class="cart_pro_title">Cute Baby
-                                                    Toy's</a><span class="cart-price"><span>$30.00</span> x 1</span><div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div><input class="qty-input" type="text" name="ec_qtybtn" value="1"><div class="inc ec_qtybtn">+</div></div><a href="javascript:void(0)" class="remove">×</a></div></li></ul>
+    
+
+        <script>
+    $(document).ready(function () {
+        // Set interval to update total every second
+        setInterval(updateTotal, 1000);
+
+        // Attach event listeners to update total on quantity change
+        $('.qty-input').on('input', updateTotal);
+
+        function updateTotal() {
+            let total = 0;
+
+            // Iterate over each product in the cart
+            $('#cart-items li').each(function () {
+                const price = parseFloat($(this).find('.price').text());
+                const quantity = parseInt($(this).find('.qty-input').val());
+
+                // Print the values to console for debugging
+                console.log("Price:", price);
+                console.log("Quantity:", quantity);
+
+                // Check if both price and quantity are valid numbers
+                if (!isNaN(price) && !isNaN(quantity)) {
+                    total += price * quantity;
+                }
+            });
+
+            // Update the total element
+            $('#total').text('$' + total.toFixed(2));
+            $('#total_hidden').text('$' + total.toFixed(2));
+            document.getElementById('total_hidden').value = total.toFixed(2);
+
+        }
+    });
+</script>
+<!-- Place this script at the end of your HTML, just before the closing </body> tag -->
+<!-- Include jQuery -->
+ 
+
+<!-- Include this in your HTML head to get the CSRF token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Add this script after your existing script -->
+<script>
+    // Function to execute every second
+    function handleBuyButtonClick() {
+        // Get all product titles and create a JSON array
+        const productTitles = document.querySelectorAll('.cart_pro_title');
+        const productList = [];
+
+        productTitles.forEach(title => {
+            productList.push({ title: title.innerText.trim() });
+        });
+
+        // Convert the array to JSON
+        const jsonProductList = JSON.stringify(productList);
+
+        // Log the JSON list (you can send it to the controller using an AJAX request)
+        console.log(jsonProductList);
+        document.getElementById('listOfProducts').value = jsonProductList;
+    } 
+
+    // Execute the function every second
+    setInterval(handleBuyButtonClick, 1000);
+</script>
+
+</header>
+    <!-- Header End  -->
+<!-- ekka Cart Start -->
+<div class="ec-side-cart-overlay" style="display: none;"></div>
+<div id="ec-side-cart" class="ec-side-cart">
+    <div class="ec-cart-inner">
+        <div class="ec-cart-top">
+            <div class="ec-cart-title">
+                <span class="cart_title">My Cart</span>
+                <button class="ec-close">×</button>
             </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-                </div>
+            <ul class="eccart-pro-items" id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+ 
+            </ul>
+        </div>
+        <div class="ec-cart-bottom">
+            <div class="cart-sub-total">
+                <table class="table cart-table">
+                    <tbody>
+           
+                        <tr>
+                            <td class="text-left">Total :</td>
+
+                            <form method="POST" action="{{ route('insertProducts') }}">
+                            @csrf
+                             <input name="listOfProducts" id="listOfProducts" type="hidden" value="">
+                            <td class="text-right primary-color" name="total" id="total" >$0.00</td>
+                            <input type="hidden" name="total_hidden" id="total_hidden" >
+                             <button type="submit" class="btn btn-primary buy-now-button">Buy Now</button>
+
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart_btn">
+                <!-- Change the class to trigger the "Buy Now" functionality -->
+                 <a href="checkout.html" class="btn btn-secondary">Checkout</a>
             </div>
         </div>
     </div>
-    <!-- ekka Cart End -->
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ 
+<!-- ekka Cart End -->
+
 
     <!-- Category Sidebar start -->
     <div class="ec-side-cat-overlay"></div>

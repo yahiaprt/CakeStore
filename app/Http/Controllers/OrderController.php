@@ -4,40 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\products;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function orders()
+    public function store(Request $request)
     {
-        
-        $loggedInUser = auth()->user();
+        $user = Auth::user();
+        $cartItems = $request->input('cartItems');
 
-        // Check if a user is logged in
-        if ($loggedInUser) {
-            // Get the ID of the logged-in seller
-            $logged_in_seller_id = auth()->user()->id;
+        // Calculate total amount from your cart items
+        $totalAmount = 0;
 
-
-            // Retrieve all orders
-            $orders = Order::all();
-    
-            // Extract product IDs from the items column in orders
-            $productIds = [];
-            foreach ($orders as $order) {
-                $items = json_decode($order->items, true);
-                $productIds = array_merge($productIds, array_values($items));
-            }
-    
-            // Remove duplicates to get unique product IDs
-            $uniqueProductIds = array_unique($productIds);
-    
-            // Retrieve products associated with the logged-in seller and specified product IDs
-            $products = products::where('seller_id', $logged_in_seller_id)
-                ->whereIn('id', $uniqueProductIds)
-                ->get();
- 
-         return view('vendor.orders', compact('orders'), compact('products'));
-    
+        foreach ($cartItems as $cartItem) {
+            $totalAmount += $cartItem['quantity'] * $cartItem['price'];
         }
+
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_amount' => $totalAmount,
+            'products' => collect($cartItems)->pluck('product_id')->toArray(),
+        ]);
+
+        // Assuming you have an OrderItem model to store individual items in the order
+        foreach ($cartItems as $cartItem) {
+            $order->items()->create([
+                'product_id' => $cartItem['product_id'],
+                'quantity' => $cartItem['quantity'],
+                'price' => $cartItem['price'],
+            ]);
+        }
+
+        // Clear the cart after creating the order
+
+        return response()->json(['message' => 'Order placed successfully']);
     }
 }
