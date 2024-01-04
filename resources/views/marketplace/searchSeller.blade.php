@@ -5,6 +5,7 @@
 <html lang="en">
 
 <header  >
+    
   <!-- Include this in your HTML head to get the CSRF token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -12,6 +13,47 @@
  
 
                         <style>
+                            *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
  .ec-sidebar-block-item {
     display: inline-block;
     margin-right: 20px; /* Adjust spacing between checkboxes */
@@ -97,6 +139,7 @@
         max-height: 500px; /* Set the maximum height for the modal body */
         overflow-y: auto; /* Enable vertical scroll for the modal body */
     }
+    
 </style>
 
                         <!-- Ec Header Search End -->
@@ -139,7 +182,40 @@
                         <li class="cat-item"><a    class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1" aria-selected="true" role="tab">
                                 <div class="cat-icons"><img class="cat-icon" src="assets/images/icons/cat_1.png" alt="cat-icon"><img class="cat-icon-hover" src="assets/images/icons/cat_1_1.png" alt="cat-icon"></div>
                                 <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
-                            </a></li>
+                            </a>
+                            <form id="ratingFormSeller" method="POST" action="{{ route('rateSeller') }}">
+    @csrf
+
+    <div class="rate">
+    <input type="radio" id="star5" name="rateSeller" value="5" {{ $seller->rating == 5 ? 'checked' : '' }} />
+    <label for="star5" title="text">5 stars</label>
+
+    <input type="radio" id="star4" name="rateSeller" value="4" {{ $seller->rating == 4 ? 'checked' : '' }} />
+    <label for="star4" title="text">4 stars</label>
+
+    <input type="radio" id="star3" name="rateSeller" value="3" {{ $seller->rating == 3 ? 'checked' : '' }} />
+    <label for="star3" title="text">3 stars</label>
+
+    <input type="radio" id="star2" name="rateSeller" value="2" {{ $seller->rating == 2 ? 'checked' : '' }} />
+    <label for="star2" title="text">2 stars</label>
+
+    <input type="radio" id="star1" name="rateSeller" value="1" {{ $seller->rating == 1 ? 'checked' : '' }} />
+    <label for="star1" title="text">1 star</label>
+    <input type="radio" id="star0" name="rateSeller" value="1" {{ $seller->rating == 0 ? 'checked' : '' }} />
+    <label for="star1" title="text">0 star</label>
+</div>
+
+    <input type="hidden" name="id" value="{{ $seller->id }}">
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('.rate input').on('click', function () {
+            $('#ratingFormSeller').submit();
+        });
+    });
+</script>
+                        </li>
                    
                     </ul>
                  </div>
@@ -197,7 +273,7 @@
                                 <!-- Product Content -->
                                 @foreach($products as $product)
                                 @if($product->seller_id == $seller->id)
-        <div class="modal" id="productDetailModal{{ $product->id }}"   tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 2200px; width: 2000%; height: 500%; max-height: 1000px;">
+        <div class="modal" id="productDetailModal{{ $product->id }}"   tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px " >  
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px;">
 
         <div class="modal-content" style="max-width: 2000px; width: 2000%;height: 500%; max-height: 1000px;">
@@ -208,9 +284,9 @@
                         <div>
                              <h1>Product Detail </h1>
                             <p class="breadcrumbs">
-                            <span onclick="$('#productDetailModal{{ $product->id }}').modal('hide');" class="w3-button w3-display-topright">&times;</span>
+                            <button onclick="$('#productDetailModal{{ $product->id }}').modal('hide');" class="w3-button w3-display-topright">&times;</button>
 
-                                <span><a href="index-2.html">Home</a></span>
+                                <span><a href="/return">Return</a></span>
                                 <span><i class="mdi mdi-chevron-right"></i></span>Product
                             </p>
                         </div>
@@ -275,38 +351,69 @@
                                                     @if(!empty($product->price))
                                                         <p class="product-price">Price: {{$product->price}} DZD</p>
                                                     @endif
-                                                    <p class="product-price">Unity: </p>
 
                                                     <!-- Product Size -->
                                                     <ul class="product-size">
                                                         @if(!empty($product->size) && is_array(json_decode($product->size)))
                                                             @foreach(json_decode($product->size) as $size)
-                                                                <li class="size"><span>{{ $size }}</span></li>
-                                                            @endforeach
+                                                            <p class="product-price">Unity: <span>{{ $size }}</span></p>
+
+                                                             @endforeach
                                                         @endif
                                                     </ul>
-                                                    <p class="product-price">Stock</p>
                                                     @if(!empty($product->stock))
-                                                                <p class="text">{{$product->stock}}</p>
-                                                            @endif
-                                                    <p class="product-price">InOrder</p>
+                                                    <p class="product-price">Stock : {{$product->stock}}</p>
+
+                                                             @endif
                                                     @if(!empty($product->purchased_number))
-                                                                <p class="text"> {{$product->purchased_number}}</p>
+                                                    <p class="product-price">InOrder : {{$product->purchased_number}}</p>
+
+                                        
                                                             @endif
                                                     <!-- Product Type -->
-                                                    <p class="product-price">Type: </p>
 
                                                     <!-- Product Color -->
                                                     <ul class="product-color">
                                                         @if(!empty($product->colors) && is_array(json_decode($product->colors)))
                                                             @foreach(json_decode($product->colors) as $colors)
-                                                                <li class="colors"><span>{{ $colors }}</span></li>
-                                                            @endforeach
+                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
+
+                                                             @endforeach
                                                         @endif
                                                     </ul>
 
                                                     <!-- Product Stock and InOrder -->
-                                                     
+                                                    <form id="ratingForm" method="POST" action="{{ route('rate') }}">
+    @csrf
+
+    <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" {{ $product->rating == 5 ? 'checked' : '' }} />
+    <label for="star5" title="text">5 stars</label>
+
+    <input type="radio" id="star4" name="rate" value="4" {{ $product->rating == 4 ? 'checked' : '' }} />
+    <label for="star4" title="text">4 stars</label>
+
+    <input type="radio" id="star3" name="rate" value="3" {{ $product->rating == 3 ? 'checked' : '' }} />
+    <label for="star3" title="text">3 stars</label>
+
+    <input type="radio" id="star2" name="rate" value="2" {{ $product->rating == 2 ? 'checked' : '' }} />
+    <label for="star2" title="text">2 stars</label>
+
+    <input type="radio" id="star1" name="rate" value="1" {{ $product->rating == 1 ? 'checked' : '' }} />
+    <label for="star1" title="text">1 star</label>
+   
+    </div>
+    <input type="hidden" name="id" value="{{ $product->id }}">
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('.rate input').on('click', function () {
+            $('#ratingForm').submit();
+        });
+    });
+</script>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -466,7 +573,7 @@
 
 
                  
-        <div class="modal fade modal-add-contact" id="product{{ $seller->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 2200px; width: 2000%; hight: 500%; max-hight:1000px " >  
+        <div class="modal fade modal-add-contact" id="product{{ $seller->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px " >  
            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1000px">  
 
         <div class="modal-content" style="max-width: 2000px; width: 2000%; " > 
@@ -501,12 +608,11 @@
                                             <h5 class="ec-pro-title">
                                                 <a href="product-left-sidebar.html">{{$product->product_name}}  </a></h5>
                                             <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
+                                            @for ($i = 0; $i < $product->rating; $i++)
+    <i class="ecicon eci-star fill"></i>
+@endfor
+
+                                               </div>
                                             <span class="ec-price">
     <span class="new-price">{{ $product->price }}</span>
 
@@ -524,14 +630,7 @@
     </a>
 
                                                 </div>
-                                                <div class="ec-pro-size">
-                                                <span style="margin-right: 5px;">Quantity:</span>
-    
-    <!-- Add input for quantity -->
-    <input type="number" name="quantity" id="quantity{{ $product->id }}" class="form-control" value="1" min="1" style="width: 100px; padding: 4px;">
-</span>
-
-                                                </div>
+                           
                                             </div>
                                         </div>
                                     </div>

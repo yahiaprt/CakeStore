@@ -65,6 +65,9 @@ Route::post('/searchPriceProductName', [SearchProductsController::class, 'search
 Route::post('/searchRatingProductName', [SearchProductsController::class, 'searchRatingProductName'])->name('searchRatingProductName');
 Route::get('/searchmodalProductName/{id}', [SearchProductsController::class, 'searchmodalProductName'])->name('searchmodalProductName');
 Route::get('/store/{id}', [SearchProductsController::class, 'storeView'])->name('store');
+Route::post('/rate', [SearchProductsController::class, 'rate'])->name('rate');
+Route::post('/rateSeller', [SearchProductsController::class, 'rateSeller'])->name('rateSeller');
+Route::get('/return', [SearchProductsController::class, 'return'])->name('return');
 
 
 

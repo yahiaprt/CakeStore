@@ -9,6 +9,29 @@ use Illuminate\Http\Request;
 
 class SearchProductsController extends Controller
 {
+  public function return() {
+    return redirect()->back();
+
+  }
+  public function rate(request $request){
+     $rating = $request->input('rate');
+      $id = $request->input('id');
+      $product = products::find($id);
+      $product->update([
+        'rating' => $rating
+    ]);
+     return redirect()->back();
+     }
+
+     public function rateSeller(request $request){
+      $rating = $request->input('rateSeller');
+       $id = $request->input('id');
+       $seller = seller::find($id);
+        $seller->update([
+         'rating' => $rating
+     ]);
+        return redirect()->back();
+        }
 
   public function storeView($id){
      $seller = seller::find($id);
@@ -29,12 +52,12 @@ class SearchProductsController extends Controller
 
 
       $searchType = $request->input('searchType');
+         $selectedColors = $request->input('colors');
 
       if ($searchType === 'product') {
     
 
 
-         $selectedColors = $request->input('colors');
          $products = products::query();
     
          $productName = $request->input('product_name');
@@ -57,28 +80,29 @@ class SearchProductsController extends Controller
          $result = $products->get();
       } elseif ($searchType === 'seller') {
         $seller = seller::query();
-        $productName = $request->input('product_name');
-
-        $seller->where('name', 'LIKE', "%{$productName}%");
-
-        $rating = $request->input('sellerRating');
+        $productName = $request->input('search_query');
+        
+         $rating = $request->input('seller_rating');
         if($rating == null) {
           $rating = 0;
         }
-        if (!empty($selectedColors)) {
-          $seller->where(function ($query) use ($selectedColors) {
+        $seller = $seller->where('name', 'LIKE', "%{$productName}%")
+    ->where('rating', '>=', $rating); // Assuming rating is a column in your database
+         if (!empty($selectedColors)) {
+          $seller = $seller->where(function ($query) use ($selectedColors) {
               foreach ($selectedColors as $color) {
-                  $query->orWhere('storeType', 'LIKE', "%{$color}%");
+                  $query->orWhere('store_type', 'LIKE', "%{$color}%");
               }
           });
+ 
       }
+      $seller = $seller->get();
+
         $products = products::all();
-        return view('marketplace.searchSeller', ['products' => $products, 'seller' => Seller::where('rating', '>=', $rating)->get()]);
+          return view('marketplace.searchSeller', ['products' => $products, 'seller' => $seller]);
                
 
-      } else {
-          // Handle other cases
-      }
+      }  
 
 
       return view('marketplace.searchProduct', ['products' => $result, 'searchType' => $searchType]); 

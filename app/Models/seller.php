@@ -28,7 +28,8 @@ class seller extends Model
         'description',
         'opening_time',
         'closing_time',
-        'store_name'
+        'store_name',
+        'rating',
     ];
     
 }
