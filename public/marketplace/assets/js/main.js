@@ -451,10 +451,9 @@ function ecCheckCookie()
         var p_price = $(this).parents().parents().parents().children(".ec-pro-content").children(".ec-price").children(".new-price").html();
         
         var p_html = '<li>'+
-                        '<a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="'+ img_url +'" alt="product"></a>'+
-                        '<div class="ec-pro-content">'+
+                         '<div class="ec-pro-content">'+
                             '<a href="product-left-sidebar.html" class="cart_pro_title">'+ p_name +'</a>'+
-                        '<span class="cart-price"><span class = "price">'+ p_price +'</span> x 1</span>'+
+                        '<span class="cart-price"><span class = "price">'+ p_price  +
                             '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>'+
                                 '<input class="qty-input" type="text" name="ec_qtybtn" value="1">'+
                             '<div class="inc ec_qtybtn">+</div></div>'+

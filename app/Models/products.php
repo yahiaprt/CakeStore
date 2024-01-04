@@ -27,7 +27,8 @@ class products extends Model
         'stock'
         ,'category_id'
         ,'title'
-        ,'description'
+        ,'description',
+        'rating'
         // Add other attributes as needed
     ];
  
