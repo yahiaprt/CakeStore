@@ -11,8 +11,21 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+
 class OrderController extends Controller
 {
+
+    public function orders(){
+        $orders = Order::all();
+        $id = Auth::user()->id;
+        $orders = DB::table('orders')->where('user_id', $id)->get();
+        
+        $products = products::all();
+
+
+
+        return view('vendor.orders', compact('orders'), compact('products'));
+    }
     public function store(Request $request)
     {
         $user = Auth::user();

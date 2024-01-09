@@ -24,9 +24,10 @@ class addProductController extends Controller
     $user = auth()->user();
     $seller = seller::find($user->id);
     $products = products::where('seller_id', $seller->id)->get();
+    $orders = DB::table('orders')->where('user_id', $user->id)->get();
+    
 
-
-    return view('vendor.grideProduct', ['products' => $products]);
+    return view('vendor.grideProduct', ['products' => $products], ['orders' => $orders]);
   }
 
   public function ProductListView()
@@ -34,9 +35,10 @@ class addProductController extends Controller
     $user = auth()->user();
     $seller = seller::find($user->id);
     $products = products::where('seller_id', $seller->id)->get();
+     $orders = DB::table('orders')->where('user_id', $user->id)->get();
 
      
-     return view('vendor.productsList', ['products' => $products] );
+     return view('vendor.productsList', ['products' => $products], ['orders' => $orders] );
   }
  
   public function addProduct(Request $request)

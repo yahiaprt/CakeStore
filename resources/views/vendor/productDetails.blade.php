@@ -178,6 +178,8 @@
                                                 </div>
                                                 <div class="tab-pane pt-3 fade" id="productreviews" role="tabpanel">
                                                     <div class="ec-t-review-wrapper">
+
+
                                                         <div class="ec-t-review-item">
                                                             <div class="ec-t-review-avtar">
                                                                 <img src="assets/img/review-image/1.jpg" alt="">
@@ -201,6 +203,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        
                                                         <div class="ec-t-review-item">
                                                             <div class="ec-t-review-avtar">
                                                                 <img src="assets/img/review-image/2.jpg" alt="">
