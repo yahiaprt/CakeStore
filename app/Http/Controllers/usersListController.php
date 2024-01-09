@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use  App\Models\users;
 use  App\Models\seller;
+use Illuminate\Support\Facades\Auth;
 
  class usersListController extends Controller
 {
@@ -14,11 +15,18 @@ use  App\Models\seller;
         
         $loggedInUser = auth()->user();
  
-
+        $user = users::find($loggedInUser->id);
+        $user->update(['isSeller' => true]);
+        
         // Update the isSeller column in the users table
         $loggedInUser->update(['isSeller' => true]);
     
         // Create a new seller using the logged-in user data
+         $seller = seller::find($loggedInUser->id);
+
+         if($seller == null) {
+        
+
         seller::create([
             'id'=> $loggedInUser->id,
             'phone_number'=> $loggedInUser->phone_number,
@@ -35,14 +43,17 @@ use  App\Models\seller;
     
     
         return view('layouts.admin');
+    } else {
+        return view('layouts.admin');
+    }
       }
     public function RoleUser()
     {
         
-        $users = users::all();
+        $user = Auth::user();
        
-
-        return view('backoffice.usersListPage', ['users' => $users]);
+         
+        return view('marketplace.home', ['user' => $user]);
       }
     public function loadUsersList()
     {

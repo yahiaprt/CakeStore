@@ -23,6 +23,7 @@ class users extends Model
         'email_verified_at',
         'remember_token',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'users_images'
     ];
 }

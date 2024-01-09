@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\seller;
 use App\Models\products;
+use Illuminate\Support\Facades\Auth;
+use App\Models\users;
 class sellerProfilController extends Controller
 {
    public function productsList($id){
@@ -66,4 +68,48 @@ class sellerProfilController extends Controller
           return view('vendor.sellerProfil', compact('seller'));
 
     }
+
+    public function upadateUserProfile(Request $req) {
+      $user = auth()->user();
+      $user = users::find($user->id);
+
+      if($req->input('email') != null)   
+      $user -> update(['email' => $req->input('email')]);
+      if($req->input('phone_number') != null)
+      $user -> update(['phone_number' => $req->input('phone_number')]);
+        if($req->input('first_name') != null)
+        $user -> update(['first_name' => $req->input('first_name')]);
+        if($req->input('last_name') != null)
+        $user -> update(['last_name' => $req->input('last_name')]);
+        if($req->input('phone_number') != null)
+        $user -> update(['phone_number' => $req->input('phone_number')]);
+
+        if($req->input('closing_time') != null)
+
+        $user -> update(['closing_time' => $req->input('closing_time')]);
+        if($req->input('opening_time') != null)
+        $user -> update(['opening_time' => $req->input('opening_time')]);
+        if($req->input('store_name') != null)
+        $user -> update(['store_name' => $req->input('store_name')]);
+        if($req->input('description') != null)
+        $user -> update(['description' => $req->input('description')]);
+        if($req->input('address') != null)
+        $user -> update(['address' => $req->input('address')]);
+      
+
+        $req->validate([
+          'coverImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust as needed
+          // Other validation rules for other form fields
+      ]);
+  
+      // Handle file upload
+      $imageName = time() . '.' . $req->coverImage->extension();
+      $req->coverImage->move(public_path('images'), $imageName);
+  
+      // Save file name to the database
+       $user->update(['users_images' => $imageName]);       
+        
+        return redirect()->back()->with('success', 'Profil Update was successful!');
+
+}
 }

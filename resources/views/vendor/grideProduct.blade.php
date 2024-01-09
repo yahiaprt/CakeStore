@@ -3,6 +3,153 @@
 
 @section('content')
 
+<header  >
+    
+  <!-- Include this in your HTML head to get the CSRF token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+     <!-- Include Bootstrap CSS -->
+ 
+
+                        <style>
+                            *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+	
+}
+.rate {
+  float: left;
+  /* or use "display: inline-block;" if you want it to be inline with surrounding content */
+}
+
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+ .ec-sidebar-block-item {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between checkboxes */
+}
+
+.ec-sidebar-block-item input[type="checkbox"] {
+    display: none;
+}
+
+.ec-sidebar-block-item label {
+    position: relative;
+    padding-left: 30px; /* Adjust as needed */
+    cursor: pointer;
+    font-size: 14px; /* Adjust as needed */
+}
+
+.ec-sidebar-block-item label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    border: 2px solid #007bff; /* Adjust color as needed */
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.ec-sidebar-block-item input[type="checkbox"]:checked + label:before {
+    background-color: #007bff; /* Adjust color as needed */
+    border: 2px solid #007bff; /* Adjust color as needed */
+}
+
+/* Additional styling for checked state */
+.ec-sidebar-block-item span.checked {
+    position: absolute;
+    left: 5px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px; /* Adjust as needed */
+    height: 10px; /* Adjust as needed */
+    background-color: #007bff; /* Adjust color as needed */
+    border-radius: 50%;
+    display: none;
+}
+
+.ec-sidebar-block-item input[type="checkbox"]:checked + label + span.checked {
+    display: block;
+}
+
+/* Styling for scrollable row and content wrapper */
+.scrollable-row {
+    max-height: 2000px; /* Set the maximum height for the scrollable row */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+.ec-content-wrapper {
+    max-width: 2000px;
+    width: 100%; /* Set the width to 100% */
+    height: 1000px; /* Set the height as per your requirement */
+}
+</style>
+  
+
+<style>
+    .modal-content {
+        max-width: 2000px;
+        width: 100%; /* Set the width to 100% */
+        height: 1000px; /* Set the height as per your requirement */
+        overflow-y: auto; /* Enable vertical scroll if content overflows */
+        border-radius: 10px; /* Rounded corners for the modal */
+    }
+
+    .ec-content-wrapper {
+        max-width: 100%; /* Set the width to 100% */
+        height: 800%; /* Set the height to 100% */
+        padding: 20px; /* Add padding to the content wrapper */
+    }
+
+    /* Add scrollbar to the modal body if the content overflows */
+    .modal-body {
+        max-height: 500px; /* Set the maximum height for the modal body */
+        overflow-y: auto; /* Enable vertical scroll for the modal body */
+    }
+    
+</style>
+
+                        <!-- Ec Header Search End -->
+ 
+     </header>
 <div class="ec-content-wrapper">
 				<div class="content">
 					<div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
@@ -147,10 +294,7 @@
 								<span><i class="mdi mdi-chevron-right"></i></span>Product
 							</p>
 						</div>
-						<div>
-							<a href="product-list.html" class="btn btn-primary"> Edit
-							</a>
-						</div>
+				 
 					</div>
 					<div class="row">
 						<div class="col-12">
@@ -189,7 +333,7 @@
 										<div class="col-xl-5 col-lg-6">
 											<div class="row product-overview">
 												<div class="col-12">
-													<h5 class="product-title">Pure Leather Purse for Woman</h5>
+													<h5 class="product-title">{{ $products->product_name }}</h5>
 													<p class="product-rate">
 														<i class="mdi mdi-star is-rated"></i>
 														<i class="mdi mdi-star is-rated"></i>
@@ -203,20 +347,7 @@
 															<p class="product-desc">{{ $products->slug }}.</p>
 															@endif
  													</p>
-													<div class="ec-ofr">
-														<h6>Available offers</h6>
-														<ul>
-															<li><b>Special Price :</b> Get extra 16% off (price
-																inclusive of discount) <a href="#">T&amp;C</a> </li>
-															<li><b>Bank Offer :</b> 10% off on XYZ Bank Cards, up to
-																$12. On orders of $200 and above <a href="#">T&amp;C</a>
-															</li>
-															<li><b>Bank Offer :</b> 5% Unlimited Cashback on Ekka XYZ
-																Bank Credit Card <a href="#">T&amp;C</a></li>
-															<li><b>Bank Offer :</b> Flat $50 off on first Ekka Pay Later
-																order of $200 and above <a href="#">T&amp;C</a></li>
-														</ul>
-													</div>
+													 
 													@if(!empty($products->image_data) && json_decode($products->image_data) !== null)
 													<p class="product-price">Price: {{$products -> price}} DZD</p>
 													<p class="product-price">Unity: </p>
@@ -258,41 +389,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-3 col-lg-12 u-card">
-											<div class="card card-default seller-card">
-												<div class="card-body text-center">
-													<a href="javascript:0" class="text-secondary d-inline-block">
-														<div class="image mb-3">
-															<img src="assets/img/user/u-xl-4.jpg" class="img-fluid rounded-circle" alt="Avatar Image">
-														</div>
-
-														<h5 class="text-dark">John Karter</h5>
-														<p class="product-rate">
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star is-rated"></i>
-															<i class="mdi mdi-star"></i>
-														</p>
-
-														<ul class="list-unstyled">
-															<li class="d-flex mb-1">
-																<i class="mdi mdi-map mr-1"></i>
-																<span>321/2, rio street, usa.</span>
-															</li>
-															<li class="d-flex mb-1">
-																<i class="mdi mdi-email mr-1"></i>
-																<span>example@email.com</span>
-															</li>
-															<li class="d-flex">
-																<i class="mdi mdi-whatsapp mr-1"></i>
-																<span>+00 987-654-3210</span>
-															</li>
-														</ul>
-													</a>
-												</div>
-											</div>
-										</div>
+								 
 									</div>
 
 									<div class="row review-rating mt-4">
@@ -310,7 +407,7 @@
 
 												<li class="nav-item">
 													<a class="nav-link" id="product-reviews-tab" data-bs-toggle="tab" data-bs-target="#productreviews" href="#productreviews" role="tab" aria-selected="false">
-														<i class="mdi mdi-star-half mr-1"></i> Reviews</a>
+														<i class="mdi mdi-star-half mr-1"></i> Orders</a>
 												</li>
 											</ul>
 											<div class="tab-content" id="myTabContent2">
@@ -327,8 +424,7 @@
 
 													</ul>
 												</div>
-												<p class="product-price">Unity: </p>
-
+ 
 
 
 												<div class="tab-pane pt-3 fade" id="productinformation" role="tabpanel">
@@ -344,52 +440,61 @@
 
 												<div class="tab-pane pt-3 fade" id="productreviews" role="tabpanel">
 													<div class="ec-t-review-wrapper">
+
+
+													@foreach($orders as $orders)
 														<div class="ec-t-review-item">
 															<div class="ec-t-review-avtar">
-																<img src="assets/img/review-image/1.jpg" alt="">
-															</div>
+ 															</div>
 															<div class="ec-t-review-content">
+																
 																<div class="ec-t-review-top">
-																	<p class="ec-t-review-name">Jeny Doe</p>
-																	<div class="ec-t-rate">
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star"></i>
-																	</div>
+																	
+																	<p class="ec-t-review-name">{{$orders->customer}}</p>
+															 
+
+  
+
+<script>
+$(document).ready(function () {
+	$('.rate input').on('click', function () {
+		$('#ratingForm').submit();
+	});
+});
+</script>
 																</div>
+																
 																<div class="ec-t-review-bottom">
 																	<p>Lorem Ipsum is simply dummy text of the printing
 																		and
 																		typesetting industry.
 																	</p>
 																</div>
+
+																<div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" {{ $products->rating == 5 ? 'checked' : '' }} />
+    <label for="star5" title="text">5 stars</label>
+
+    <input type="radio" id="star4" name="rate" value="4" {{ $products->rating == 4 ? 'checked' : '' }} />
+    <label for="star4" title="text">4 stars</label>
+
+    <input type="radio" id="star3" name="rate" value="3" {{ $products->rating == 3 ? 'checked' : '' }} />
+    <label for="star3" title="text">3 stars</label>
+
+    <input type="radio" id="star2" name="rate" value="2" {{ $products->rating == 2 ? 'checked' : '' }} />
+    <label for="star2" title="text">2 stars</label>
+
+    <input type="radio" id="star1" name="rate" value="1" {{ $products->rating == 1 ? 'checked' : '' }} />
+    <label for="star1" title="text">1 star</label>
+   
+    </div>
+
+  
 															</div>
 														</div>
-														<div class="ec-t-review-item">
-															<div class="ec-t-review-avtar">
-																<img src="assets/img/review-image/2.jpg" alt="">
-															</div>
-															<div class="ec-t-review-content">
-																<div class="ec-t-review-top">
-																	<p class="ec-t-review-name">Linda Morgus</p>
-																	<div class="ec-t-rate">
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star is-rated"></i>
-																		<i class="mdi mdi-star"></i>
-																	</div>
-																</div>
-																<div class="ec-t-review-bottom">
-																	<p>Lorem Ipsum is simply dummy text of the printing
-																		and
-																		typesetting industry.
-																	</p>
-																</div>
-															</div>
-														</div>
+														
+										 
+@endforeach
 
 													</div>
 												</div>

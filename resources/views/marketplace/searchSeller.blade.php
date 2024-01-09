@@ -273,8 +273,8 @@
                                 <!-- Product Content -->
                                 @foreach($products as $product)
                                 @if($product->seller_id == $seller->id)
-        <div class="modal" id="productDetailModal{{ $product->id }}"   tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px " >  
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px;">
+<div class="modal" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">   
+ <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px;">
 
         <div class="modal-content" style="max-width: 2000px; width: 2000%;height: 500%; max-height: 1000px;">
             <div class="ec-content-wrapper" style="max-width: 2000px; width: 2000%;height: 500%; max-height: 1000px;">
@@ -573,7 +573,7 @@
 
 
                  
-        <div class="modal fade modal-add-contact" id="product{{ $seller->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px " >  
+        <div class="modal fade modal-add-contact" id="product{{ $seller->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1000px">  
 
         <div class="modal-content" style="max-width: 2000px; width: 2000%; " > 

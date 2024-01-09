@@ -54,6 +54,7 @@ Route::get('/productList', [addProductController::class, 'productListView'])->na
 Route::get('/productGrid', [addProductController::class, 'productGridView'])->name('productGrid');
 Route::get('/productDetails/{id}', [addProductController::class, 'productDetailsView'])->name('productDetails');
 Route::get('/sellerProfil', [sellerProfilController::class, 'sellerProfileView'])->name('sellerProfileView');
+
 Route::get('/productsList/{id}', [sellerProfilController::class, 'productsList'])->name('productsList');
  Route::post('/insert-products', [homeController::class, 'insertProducts'])->name('insertProducts');;
 
@@ -70,6 +71,7 @@ Route::post('/rateSeller', [SearchProductsController::class, 'rateSeller'])->nam
 Route::get('/return', [SearchProductsController::class, 'return'])->name('return');
 
 
+Route::get('/userSettings', [homeController::class, 'userSettings'])->name('userSettings');
 
 
 Route::get('/searchProduct', [SearchProductsController::class, 'searchProduct'])->name('searchProduct');
@@ -81,6 +83,8 @@ Route::get('/searchProduct', [SearchProductsController::class, 'searchProduct'])
 Route::post('/load-users-list', [usersListController::class, 'addUser'])->name('user.addUser');
 Route::post('/load-vendor-list', [usersListController::class, 'addSeller'])->name('seller.addVendor');
 Route::post('/sellerProfile', [sellerProfilController::class, 'upadateProfile'])->name('sellerProfile');
+Route::post('/upadateUserProfile', [sellerProfilController::class, 'upadateUserProfile'])->name('upadateUserProfile');
+
 Route::post('/sellerProfileSeller', [sellerProfilController::class, 'upadateSellerProfile'])->name('upadateSellerProfile');
 
 

@@ -389,7 +389,7 @@
 
                                 <!-- Header User Start -->
                                 <div class="ec-header-user dropdown">
-                                    <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
+                                    <a   href="/userSettings"    ><i class="fi-rr-user"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a class="dropdown-item" href="register.html">Register</a></li>
                                         <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -1033,9 +1033,18 @@
                             <form method="POST" action="{{ route('insertProducts') }}">
                             @csrf
                              <input name="listOfProducts" id="listOfProducts" type="hidden" value="">
-                            <td class="text-right primary-color" name="total" id="total" >$0.00</td>
+                            <td class="text-right primary-color" name="total" id="total" >DZD 0.00</td>
                             <input type="hidden" name="total_hidden" id="total_hidden" >
-                             <button type="submit" class="btn btn-primary buy-now-button">Buy Now</button>
+                            <style>
+  .buy-now-button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+<input type="hidden" name="seller_id" value="{{ $seller->id }}"> 
+<button type="submit" class="btn btn-primary buy-now-button">Buy Now</button>
 
                             </form>
                         </tr>
@@ -1044,8 +1053,7 @@
             </div>
             <div class="cart_btn">
                 <!-- Change the class to trigger the "Buy Now" functionality -->
-                 <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-            </div>
+             </div>
         </div>
     </div>
 </div>
