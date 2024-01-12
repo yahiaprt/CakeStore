@@ -333,7 +333,9 @@
 										<div class="col-xl-5 col-lg-6">
 											<div class="row product-overview">
 												<div class="col-12">
+													@if(isset($products->product_name))
 													<h5 class="product-title">{{ $products->product_name }}</h5>
+													@endif
 													<p class="product-rate">
 														<i class="mdi mdi-star is-rated"></i>
 														<i class="mdi mdi-star is-rated"></i>
@@ -429,12 +431,20 @@
 
 												<div class="tab-pane pt-3 fade" id="productinformation" role="tabpanel">
 													<ul>
-														<li><span>Stock: </span> {{ $products->stock  }}</li>
-														@foreach(json_decode($products->size) as $size)		<li><span>Unity:</span> {{ $size  }}</li> @endforeach
+														<li><span>Stock: </span> 
+														@if(isset($products->stock))
+
+														{{ $products->stock  }}
+													@endif
+													</li>
+													@if(isset($products->stock))
+
+														@foreach(json_decode($products->size) as $size)		<li><span>Unity:</span> {{ $size  }}</li> @endforeach @endif
+														@if(isset($products->colors))
 														@if(json_decode($products->colors) != null)	
 		@foreach(json_decode($products->colors) as $colors)		
 	
-														<li><span>Type :</span> {{ $colors  }}</li> @endforeach 	@endif
+														<li><span>Type :</span> {{ $colors  }}</li> @endforeach 	@endif @endif
 													</ul>
 												</div>
 

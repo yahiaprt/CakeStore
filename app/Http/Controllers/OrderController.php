@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function orders(){
         $orders = Order::all();
         $id = Auth::user()->id;
-        $orders = DB::table('orders')->where('user_id', $id)->get();
+        $orders = DB::table('orders')->where('price', $id)->get();
         
         $products = products::all();
 

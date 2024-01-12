@@ -110,17 +110,14 @@
         <label class="form-label">Select Categories</label>
         <select name="categories" id="category" class="form-select">
             <optgroup label="Fashion">
-                <option value="t-shirt">T-shirt</option>
-                <option value="dress">Dress</option>
+                <option value="t-shirt">sucré</option>
+                <option value="dress">cake</option>
             </optgroup>
             <optgroup label="Furniture">
-                <option value="table">Table</option>
-                <option value="sofa">Sofa</option>
+                <option value="table">sallee</option>
+                <option value="sofa">mini pizza</option>
             </optgroup>
-            <optgroup label="Electronic">
-                <option value="phone">I Phone</option>
-                <option value="laptop">Laptop</option>
-            </optgroup>
+           
         </select>
     </div>
 
@@ -170,7 +167,7 @@
     </div>
 
     <div class="col-md-6">
-        <label class="form-label">Price <span>( In USD )</span></label>
+        <label class="form-label">Price <span>( In DZD )</span></label>
         <input type="number" class="form-control" id="price" name="price">
     </div>
 

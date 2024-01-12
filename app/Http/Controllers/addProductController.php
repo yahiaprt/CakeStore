@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\products;
 use App\Models\seller;
+use App\Models\users;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 class addProductController extends Controller
 {
+
+   public function dashboardStat()
+  {
+    $users = users::take(7)->get();
+    $products = products::all();
+    $sellers = Seller::all();
+    $orders = Order::take(7)->get();
+
+    return view('vendor.dashboradstat', compact('products', 'sellers', 'orders', 'users'));
+  }
   public function addProductView()
   {
     $products = products::all();
@@ -24,9 +36,8 @@ class addProductController extends Controller
     $user = auth()->user();
     $seller = seller::find($user->id);
     $products = products::where('seller_id', $seller->id)->get();
-    $orders = DB::table('orders')->where('user_id', $user->id)->get();
-    
-
+    $orders = DB::table('orders')->where('price', $user->id)->get();
+ 
     return view('vendor.grideProduct', ['products' => $products], ['orders' => $orders]);
   }
 
@@ -35,8 +46,7 @@ class addProductController extends Controller
     $user = auth()->user();
     $seller = seller::find($user->id);
     $products = products::where('seller_id', $seller->id)->get();
-     $orders = DB::table('orders')->where('user_id', $user->id)->get();
-
+     $orders = DB::table('orders')->where('price', $user->id)->get();
      
      return view('vendor.productsList', ['products' => $products], ['orders' => $orders] );
   }

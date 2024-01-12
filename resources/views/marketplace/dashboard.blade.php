@@ -109,7 +109,7 @@
                             </div>
                             <!-- Header User End -->
                             <!-- Header Cart Start -->
-                            <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                            <a href="/ordersCustomer" class="ec-header-btn ec-header-wishlist">
                                 <div class="header-icon"><i class="fi-rr-heart"></i></div>
                                 <span class="ec-header-count">4</span>
                             </a>
@@ -174,7 +174,7 @@
                                 </div>
                                 <!-- Header User End -->
                                 <!-- Header wishlist Start -->
-                                <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                                <a href="/ordersCustomer" class="ec-header-btn ec-header-wishlist">
                                     <div class="header-icon"><i class="fi-rr-heart"></i></div>
                                     <span class="ec-header-count">4</span>
                                 </a>
@@ -408,7 +408,7 @@
                                             <ul class="sub-menu sub-menu-child">
                                                 <li><a href="user-profile.html">User Profile</a></li>
                                                 <li><a href="user-history.html">History</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="/ordersCustomer">Wishlist</a></li>
                                                 <li><a href="track-order.html">Track Order</a></li>
                                                 <li><a href="user-invoice.html">Invoice</a></li>
                                             </ul>
@@ -616,7 +616,7 @@
                                     <ul class="sub-menu">
                                         <li><a href="user-profile.html">User Profile</a></li>
                                         <li><a href="user-history.html">User History</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/ordersCustomer">Wishlist</a></li>
                                         <li><a href="track-order.html">Track Order</a></li>
                                         <li><a href="user-invoice.html">User Invoice</a></li>
                                     </ul>
@@ -4868,13 +4868,13 @@
                     <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><i class="fi-rr-menu-burger"></i></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><i class="fi-rr-shopping-bag"></i><span class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><i class="fi-rr-shopping-bag"></i><span class="ec-cart-noti ec-header-count cart-count-lable">0</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="index-2.html" class="ec-header-btn"><i class="fi-rr-home"></i></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><i class="fi-rr-heart"></i><span class="ec-cart-noti">4</span></a>
+                    <a href="/ordersCustomer" class="ec-header-btn"><i class="fi-rr-heart"></i><span class="ec-cart-noti">0</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="login.html" class="ec-header-btn"><i class="fi-rr-user"></i></a>

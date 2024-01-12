@@ -1,243 +1,7 @@
-<html lang="en" dir="ltr"><!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Oct 2023 18:21:02 GMT -->
+@extends('layouts.admin')
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Ekka - Admin Dashboard eCommerce HTML Template.">
-
-	<title>Ekka - Admin Dashboard eCommerce HTML Template.</title>
-
-	<!-- GOOGLE FONTS -->
-	<link rel="preconnect" href="https://fonts.googleapis.com/">
-	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet"> 
-
-	<link href="../../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet">
-
-	<!-- PLUGINS CSS STYLE -->
-	<link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
-	<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet">
-
-	<!-- Ekka CSS -->
-	<link id="ekka-css" href="assets/css/ekka.css" rel="stylesheet">
-
-	<!-- FAVICON -->
-	<link href="assets/img/favicon.png" rel="shortcut icon">
-
-
-
-
-
-
-
-
-
-	<style>
-  .image-scroll-container {
-    overflow-x: auto;
-    white-space: nowrap; /* Prevents images from wrapping to the next line */
-  }
-
-  .horizontal-scroll-wrapper {
-    display: flex; /* Enable flex container */
-  }
-
-  .horizontal-scroll-wrapper img {
-    flex: 0 0 auto; /* Don't grow or shrink the images */
-    margin-right: 10px; /* Add some space between images */
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-	
-
-<style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><script type="text/javascript" charset="UTF-8" src="../../../../../www.gstatic.com/charts/%25%7bversion%7d/loader.html"></script></head>
-
-<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-light ec-header-light" id="body"><div class="theme-option">
-			<div class="right-sidebar-2">
-			<div class="ec-tools-sidebar-overlay"></div>
-        <div class="right-sidebar-container-2">
-          <div class="slim-scroll-right-sidebar-2">
-
-            <div class="right-sidebar-2-header">
-              <h2>SETTINGS</h2>
-              <p>Layout Preview Settings</p>
-              <div class="btn-close-right-sidebar-2">
-                <i class="mdi mdi-window-close"></i>
-              </div>
-            </div>
-
-            <div class="right-sidebar-2-body" data-simplebar="init"><div class="simplebar-wrapper" style="margin: -15px -30px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-ec-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 15px 30px;">
-              <span class="right-sidebar-2-subtitle">Header Layout</span>
-              <div class="no-col-space">
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 ec-header-fixed-to btn-right-sidebar-2-active">Fixed</a>
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 ec-header-static-to">Static</a>
-              </div>
-
-              <span class="right-sidebar-2-subtitle">Sidebar Layout</span>
-              <div class="no-col-space">
-                <select class="right-sidebar-2-select" id="sidebar-option-select">
-                  <option value="ec-sidebar-fixed">Fixed Default</option>
-                  <option value="ec-sidebar-fixed-minified">Fixed Minified</option>
-                  <option value="ec-sidebar-fixed-offcanvas">Fixed Offcanvas</option>
-                  <option value="ec-sidebar-static">Static Default</option>
-                  <option value="ec-sidebar-static-minified">Static Minified</option>
-                  <option value="ec-sidebar-static-offcanvas">Static Offcanvas</option>
-                </select>
-              </div>
-
-              <span class="right-sidebar-2-subtitle">Header Background</span>
-              <div class="no-col-space">
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 btn-right-sidebar-2-active ec-header-light-to">Light</a>
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 ec-header-dark-to">Dark</a>
-              </div>
-
-              <span class="right-sidebar-2-subtitle">Navigation Background</span>
-              <div class="no-col-space">
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 btn-right-sidebar-2-active ec-sidebar-light-to">Light</a>
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 ec-sidebar-dark-to">Dark</a>
-              </div>
-
-              <span class="right-sidebar-2-subtitle">Spacing Layout</span>
-              <div class="no-col-space">
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 btn-right-sidebar-2-active default-spacing-to">Default</a>
-                <a href="javascript:void(0);" class="btn-right-sidebar-2 compact-spacing-to">Compact</a>
-              </div>
-              <div class="d-flex justify-content-center">
-                <div id="reset-options" style="width: auto; cursor: pointer" class="btn-right-sidebar-2 btn-reset">Reset
-                  Settings</div>
-              </div>
-            </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 551px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none; transform: translate3d(0px, 0px, 0px);"></div></div></div>
-          </div>
-        </div>
-      </div>
-		</div>
-
-	<!--  WRAPPER  -->
-	<div class="wrapper">
-		
-		<!-- LEFT MAIN SIDEBAR -->
-		<div class="ec-left-sidebar ec-bg-sidebar">
-			<div id="sidebar" class="sidebar ec-sidebar-footer">
-
-				<div class="ec-brand">
-					<a href="index-2.html" title="Ekka">
-						<img class="ec-brand-icon" src="assets/img/logo/ec-site-logo.png" alt="">
-						<span class="ec-brand-name text-truncate">Ekka</span>
-					</a>
-				</div>
-
-				<!-- begin sidebar scrollbar -->
-				<div class="ec-navigation" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-ec-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
-					<!-- sidebar menu -->
-					<ul class="nav sidebar-inner" id="sidebar-menu">
-						<!-- Dashboard -->
-						<li class="active">
-							<a class="sidenav-item-link" href="/dashboardStat">
-								<i class="mdi mdi-view-dashboard-outline"></i>
-								<span class="nav-text">Dashboard</span>
-							</a>
-							<hr>
-						</li>
-
-					 
-
-					 
- 
-						<!-- Products -->
-						<li class="has-sub">
-							<a class="sidenav-item-link" href="javascript:void(0)">
-								<i class="mdi mdi-palette-advanced"></i>
-								<span class="nav-text">Products</span> <b class="caret"></b>
-							</a>
-							<div class="collapse">
-								<ul class="sub-menu" id="products" data-parent="#sidebar-menu">
-									<li class="">
-										        <a class="sidenav-item-link" href="{{ route('add-product-view') }}">
-
-											<span class="nav-text">Add Product</span>
-										</a>
-									</li>
-									<li class="">
-									<a class="sidenav-item-link" href="{{ route('productList') }}">
-											<span class="nav-text">List Product</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="{{ route('productGrid') }}">
-											<span class="nav-text">Grid Product</span>
-										</a>
-									</li>
-							 
-								</ul>
-							</div>
-						</li>
-
-						<!-- Orders -->
-						<li class="has-sub">
-							<a class="sidenav-item-link" href="/orders">
-								<i class="mdi mdi-cart" href="/orders"></i>
-								<span class="nav-text" href="/orders">Orders</span> <b class="caret"></b>
-							</a>
-							<div class="collapse" href="/orders">
-								<ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
-									<li class="">
-										<a class="sidenav-item-link" href="new-order.html">
-											<span class="nav-text">New Order</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="order-history.html">
-											<span class="nav-text">Order History</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="order-detail.html">
-											<span class="nav-text">Order Detail</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="invoice.html">
-											<span class="nav-text">Invoice</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-
-					 
-						<!-- Other Pages -->
-						<li class="has-sub">
-							<a class="sidenav-item-link" href="javascript:void(0)">
-								<i class="mdi mdi-image-filter-none"></i>
-								<span class="nav-text">Other Pages</span> <b class="caret"></b>
-							</a>
-							<div class="collapse">
-								<ul class="sub-menu" id="otherpages" data-parent="#sidebar-menu">
-									<li class="has-sub">
-										<a href="404.html">404 Page</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 629px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none; transform: translate3d(0px, 0px, 0px);"></div></div></div>
-			</div>
-		</div>
-
-		<!--  PAGE WRAPPER -->
-		<div class="ec-page-wrapper">
+@section('content')
+<div class="ec-page-wrapper">
 
 			<!-- Header -->
 			<header class="ec-main-header" id="header">
@@ -274,7 +38,7 @@
 										</div>
 									</li>
 									<li>
-										<a href="{{route('sellerProfileView')}}">
+										<a href="user-profile.html">
 											<i class="mdi mdi-account"></i> My Profile
 										</a>
 									</li>
@@ -795,57 +559,344 @@
 			</header>
 
 			<!-- CONTENT WRAPPER -->
+			<div class="ec-content-wrapper">
+				<div class="content">
+					<!-- Top Statistics -->
+					<div class="row">
+						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
+							<div class="card card-mini dash-card card-1">
+								<div class="card-body">
+									<h2 class="mb-1">13</h2>
+									<p>Daily Signups</p>
+									<span class="mdi mdi-account-arrow-left"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
+							<div class="card card-mini dash-card card-2">
+								<div class="card-body">
+									<h2 class="mb-1">73</h2>
+									<p>Daily Visitors</p>
+									<span class="mdi mdi-account-clock"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
+							<div class="card card-mini dash-card card-3">
+								<div class="card-body">
+									<h2 class="mb-1">15</h2>
+									<p>Daily Order</p>
+									<span class="mdi mdi-package-variant"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 p-b-15 lbl-card">
+							<div class="card card-mini dash-card card-4">
+								<div class="card-body">
+									<h2 class="mb-1">DZD 98,13</h2>
+									<p>Daily Revenue</p>
+									<span class="mdi mdi-currency-usd"></span>
+								</div>
+							</div>
+						</div>
+					</div>
 
-			<div id="content-container">
+					<div class="row">
+						<div class="col-xl-8 col-md-12 p-b-15">
+							<!-- Sales Graph -->
+							<div id="user-acquisition" class="card card-default">
+								<div class="card-header">
+									<h2>Sales Report</h2>
+								</div>
+								<div class="card-body">
+									<ul class="nav nav-tabs nav-style-border justify-content-between justify-content-lg-start border-bottom" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" data-bs-toggle="tab" href="#todays" role="tab" aria-selected="true">Today's</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-bs-toggle="tab" href="#monthly" role="tab" aria-selected="false">Monthly </a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-bs-toggle="tab" href="#yearly" role="tab" aria-selected="false">Yearly</a>
+										</li>
+									</ul>
+									<div class="tab-content pt-4" id="salesReport">
+										<div class="tab-pane fade show active" id="source-medium" role="tabpanel">
+											<div class="mb-6" style="max-height:247px"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+												<canvas id="acquisition" class="chartjs2 chartjs-render-monitor" style="display: block; width: 1442px; height: 247px;" width="1442" height="247"></canvas>
+												<div id="acqLegend" class="customLegend mb-2"><ul class="2-legend"><li><span style="background-color:rgba(52, 116, 212, .2)"></span>Via Referral</li><li><span style="background-color:rgba(255, 192, 203, .3)"></span>Direct</li><li><span style="background-color:rgb(178, 251, 212, .3)"></span>Via Social</li></ul></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-4 col-md-12 p-b-15">
+							<!-- Doughnut Chart -->
+							<div class="card card-default">
+								<div class="card-header justify-content-center">
+									<h2>Orders Overview</h2>
+								</div>
+								<div class="card-body"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+									<canvas id="doChart" style="display: block; width: 684px; height: 210px;" width="684" height="210" class="chartjs-render-monitor"></canvas>
+								</div>
+								<a href="#" class="pb-5 d-block text-center text-muted"><i class="mdi mdi-download mr-2"></i> Download overall report</a>
+								<div class="card-footer d-flex flex-wrap bg-white p-0">
+									<div class="col-6">
+										<div class="p-20">
+											<ul class="d-flex flex-column justify-content-between">
+												<li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #4c84ff"></i>Order Completed</li>
+												<li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #80e1c1 "></i>Order Unpaid</li>
+												<li><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #ff7b7b "></i>Order returned</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-6 border-left">
+										<div class="p-20">
+											<ul class="d-flex flex-column justify-content-between">
+												<li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #8061ef"></i>Order Pending</li>
+												<li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #ffa128"></i>Order Canceled</li>
+												<li><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #7be6ff"></i>Order Broken</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-8 col-md-12 p-b-15">
+							<!-- User activity statistics -->
+							<div class="card card-default" id="user-activity">
+								<div class="no-gutters">
+									<div>
+										<div class="card-header justify-content-between">
+											<h2>User Activity</h2>
+											<div class="date-range-report ">
+												<span>Jan 11, 2024 - Jan 11, 2024</span>
+											</div>
+										</div>
+										<div class="card-body">
+											<div class="tab-content" id="userActivityContent"> 
+												<div class="tab-pane fade show active" id="user" role="tabpanel"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+													<canvas id="activity" class="chartjs chartjs-render-monitor" style="display: block; width: 1442px; height: 280px;" width="1442" height="280"></canvas>
+												</div>
+											</div>
+										</div>
+										<div class="card-footer d-flex flex-wrap bg-white border-top">
+											<a href="#" class="text-uppercase py-3">In-Detail Overview</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-12 p-b-15">
+							<div class="card card-default">
+								<div class="card-header flex-column align-items-start">
+									<h2>Current Users</h2>
+								</div>
+								<div class="card-body"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+									<canvas id="currentUser" class="chartjs chartjs-render-monitor" style="display: block; width: 684px; height: 283px;" width="684" height="283"></canvas>
+								</div>
+								<div class="card-footer d-flex flex-wrap bg-white border-top">
+									<a href="#" class="text-uppercase py-3">In-Detail Overview</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-8 col-12 p-b-15">
+						 
+						<div class="col-xl-4 col-12 p-b-15">
+							<!-- Top Sell Table -->
+						 
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-12 p-b-15">
+							<!-- Recent Order Table -->
+							<div class="card card-table-border-none card-default recent-orders" id="recent-orders">
+								<div class="card-header justify-content-between">
+									<h2>Recent Orders</h2>
+									<div class="date-range-report">
+										<span>Dec 14, 2023 - Jan 12, 2024</span>
+									</div>
+								</div>
+								<div class="card-body pt-0 pb-5">
+									<table class="table card-table table-responsive table-responsive-large" style="width:100%">
+										<thead>
+											<tr>
+												<th>Order ID</th>
+ 												<th class="d-none d-lg-table-cell">Order Date</th>
+												<th class="d-none d-lg-table-cell">Order Cost</th>
+												<th>Status</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											 @foreach($orders as $orders)
+											<tr>
+												<td>{{$orders->id}}</td>
+											 
+ 												<td class="d-none d-lg-table-cell">{{$orders->created_at}}</td>
+												<td class="d-none d-lg-table-cell">DZD {{$orders->total_amount}}</td>
+												<td>
+													<span class="badge badge-danger">{{$orders->status}}</span>
+												</td>
+												<td class="text-right">
+													<div class="dropdown show d-inline-block widget-dropdown">
+														<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li class="dropdown-item">
+																<a href="#">View</a>
+															</li>
+															<li class="dropdown-item">
+																<a href="#">Remove</a>
+															</li>
+														</ul>
+													</div>
+												</td>
+											</tr>
+@endforeach
+
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-5">
+							<!-- New Customers -->
+							<div class="card ec-cust-card card-table-border-none card-default">
+								<div class="card-header justify-content-between ">
+									<h2>New Customers</h2>
+									<div>
+										<button class="text-black-50 mr-2 font-size-20">
+											<i class="mdi mdi-cached"></i>
+										</button>
+										<div class="dropdown show d-inline-block widget-dropdown">
+											<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-customar" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+											</a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li class="dropdown-item"><a href="#">Action</a></li>
+												<li class="dropdown-item"><a href="#">Another action</a></li>
+												<li class="dropdown-item"><a href="#">Something else here</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 pb-15px">
+									<table class="table ">
+										<tbody>
+         @foreach($users as $users)
+      
+											<tr>
+												<td>
+													<div class="media">
+														<div class="media-image mr-3 rounded-circle">
+															<a href="profile.html"><img class="profile-img rounded-circle w-45" src="assets/img/user/u1.jpg" alt="customer image"></a>
+														</div>
+														<div class="media-body align-self-center">
+															<a href="profile.html">
+																<h6 class="mt-0 text-dark font-weight-medium">{{$users->name}}
+																	 </h6>
+															</a>
+															<small>{{$users-> email}}</small>
+														</div>
+													</div>
+												</td>
+ 											 
+											</tr>
+
+@endforeach
 
 					 
-@yield('content')
-			</div>		
 
 
- 
-			
-			<!-- End Content Wrapper -->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-7">
+							<!-- Top Products -->
+							<div class="card card-default ec-card-top-prod">
+								<div class="card-header justify-content-between">
+									<h2>Top Products</h2>
+									<div>
+										<button class="text-black-50 mr-2 font-size-20"><i class="mdi mdi-cached"></i></button>
+										<div class="dropdown show d-inline-block widget-dropdown">
+											<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-product" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+											</a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li class="dropdown-item"><a href="#">Update Data</a></li>
+												<li class="dropdown-item"><a href="#">Detailed Log</a></li>
+												<li class="dropdown-item"><a href="#">Statistics</a></li>
+												<li class="dropdown-item"><a href="#">Clear Data</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="card-body mt-10px mb-10px py-0">
+
+
+
+
+
+                                    @foreach($products as $product)
+									@if($product-> rating > 4)
+									<div class="row media d-flex pt-15px pb-15px">
+										<div class="col-lg-3 col-md-3 col-2 media-image align-self-center rounded">
+											<a href="#"><img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="customer image"></a>
+										</div>
+										<div class="col-lg-9 col-md-9 col-10 media-body align-self-center ec-pos">
+											<a href="#">
+												<h6 class="mb-10px text-dark font-weight-medium">{{$product->product_name}}</h6>
+											</a>
+											<p class="float-md-right sale"><span class="mr-2">58</span>Sales</p>
+											<p class="d-none d-md-block">{{$product->description}}</p>
+											<p class="mb-0 ec-price">
+												<span class="text-dark">DZD {{$product->price}}</span>
+ 											</p>
+										</div>
+									</div>
+									@endif
+									@endforeach
+
+							 
+
+
+
+
+
+								</div>
+							
+							</div>
+							
+							
+							<!-- End Content -->
+			</div> <!-- End Content Wrapper -->
 
 			<!-- Footer -->
 			<footer class="footer mt-auto">
 				<div class="copyright bg-white">
 					<p>
-						Copyright © <span id="ec-year">2023</span><a class="text-primary" href="https://themeforest.net/user/ashishmaraviya" target="_blank"> Ekka Admin Dashboard</a>. All Rights Reserved.
+						Copyright © <span id="ec-year">2024</span><a class="text-primary" href="https://themeforest.net/user/ashishmaraviya" target="_blank"> Ekka Admin Dashboard</a>. All Rights Reserved.
 					  </p>
 				</div>
 			</footer>
 
-		</div> <!-- End Page Wrapper -->
-	</div> <!-- End Wrapper -->
+		</div>
 
-	<!-- Common Javascript -->
-	<script src="assets/plugins/jquery/jquery-3.5.1.min.js"></script>
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/plugins/simplebar/simplebar.min.js"></script>
-	<script src="assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
-	<script src="assets/plugins/slick/slick.min.js"></script>
-
-	<!-- Chart -->
-	<script src="assets/plugins/charts/Chart.min.js"></script>
-	<script src="assets/js/chart.js"></script>
-
-	<!-- Google map chart -->
-	<script src="assets/plugins/charts/google-map-loader.js"></script>
-	<script src="assets/plugins/charts/google-map.js"></script>
-
-	<!-- Date Range Picker -->
-	<script src="assets/plugins/daterangepicker/moment.min.js"></script>
-    <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-	<script src="assets/js/date-range.js"></script>
-
-	<!-- Option Switcher -->
-	<script src="assets/plugins/options-sidebar/optionswitcher.js"></script>
-
-	<!-- Ekka Custom -->
-	<script src="assets/js/ekka.js"></script>
-
-
-
-
-<div class="daterangepicker ltr show-ranges opensleft"><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom Range">Custom Range</li></ul></div><div class="drp-calendar left"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div><div class="daterangepicker ltr show-ranges opensleft"><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom Range">Custom Range</li></ul></div><div class="drp-calendar left"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div><div class="daterangepicker ltr show-ranges opensleft"><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom Range">Custom Range</li></ul></div><div class="drp-calendar left"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div></body><!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Oct 2023 18:21:02 GMT --></html>
+        @endsection
