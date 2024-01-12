@@ -607,6 +607,8 @@
                                         <div class="ec-pro-content">
                                             <h5 class="ec-pro-title">
                                                 <a href="product-left-sidebar.html">{{$product->product_name}}  </a></h5>
+                                                <h5 class="ec-pro-title-seller">
+                                                <a href="product-left-sidebar.html">{{$product->seller_id}}  </a></h5>
                                             <div class="ec-pro-rating">
                                             @for ($i = 0; $i < $product->rating; $i++)
     <i class="ecicon eci-star fill"></i>

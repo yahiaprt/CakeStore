@@ -27,6 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/admin', [adminDashboardController::class, 'index'])->name('dashboard');
+Route::get('/adminReal', [adminDashboardController::class, 'indexadminReal'])->name('dashboardadminReal');
 
 Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth')->group(function () {
@@ -53,7 +54,10 @@ Route::get('/Add-Product-view', [addProductController::class, 'addProductView'])
 Route::get('/productList', [addProductController::class, 'productListView'])->name('productList');
 Route::get('/productGrid', [addProductController::class, 'productGridView'])->name('productGrid');
 Route::get('/productDetails/{id}', [addProductController::class, 'productDetailsView'])->name('productDetails');
+Route::get('/dashboardStat', [addProductController::class, 'dashboardStat'])->name('dashboardStat');
+
 Route::get('/sellerProfil', [sellerProfilController::class, 'sellerProfileView'])->name('sellerProfileView');
+Route::get('/ordersCustomer', [sellerProfilController::class, 'ordersCustomer'])->name('ordersCustomer');
 
 Route::get('/productsList/{id}', [sellerProfilController::class, 'productsList'])->name('productsList');
  Route::post('/insert-products', [homeController::class, 'insertProducts'])->name('insertProducts');;

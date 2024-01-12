@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\seller;
 use App\Models\products;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 use App\Models\users;
 class sellerProfilController extends Controller
 {
+
+  
+
+  public function ordersCustomer(){
+    
+    $orders = Order::where('user_id', auth()->user()->id)->get();
+    $products = products::all();
+
+      return view('marketplace.ordersCustomer',   ['orders' => $orders], ['products' => $products] );
+  }
    public function productsList($id){
     
       $seller = seller::find($id);

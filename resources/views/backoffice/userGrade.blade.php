@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminReal')
  @section('content')
 
  <div class="ec-content-wrapper ec-ec-content-wrapper mb-m-24px">

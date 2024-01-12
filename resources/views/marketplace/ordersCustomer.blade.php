@@ -1,13 +1,72 @@
-@extends('layouts.admin')
- @section('content')
+@extends('layouts.homeLayout')
+@section('homecontent')
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Ekka - Admin Dashboard eCommerce HTML Template.">
+
+ 
+	<!-- GOOGLE FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet"> 
+
+	<link href="../../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+
+	<!-- PLUGINS CSS STYLE -->
+	<link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+	<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet">
+
+	<!-- Ekka CSS -->
+	<link id="ekka-css" href="assets/css/ekka.css" rel="stylesheet">
+
+	<!-- FAVICON -->
+	<link href="assets/img/favicon.png" rel="shortcut icon">
+
+
+
+ 
+
+
+
+
+	<style>
+  .image-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap; /* Prevents images from wrapping to the next line */
+  }
+
+  .horizontal-scroll-wrapper {
+    display: flex; /* Enable flex container */
+  }
+
+  .horizontal-scroll-wrapper img {
+    flex: 0 0 auto; /* Don't grow or shrink the images */
+    margin-right: 10px; /* Add some space between images */
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+	
+
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><script type="text/javascript" charset="UTF-8" src="../../../../../www.gstatic.com/charts/%25%7bversion%7d/loader.html"></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 <div class="ec-content-wrapper">
 	
 				<div class="content">
 					<div class="breadcrumb-wrapper breadcrumb-wrapper-2">
-						<h1>New Orders</h1>
-						<p class="breadcrumbs"><span><a href="index-2.html">Home</a></span>
-							<span><i class="mdi mdi-chevron-right"></i></span>Orders
-						</p>
+ 					 
 					</div>
 					<div class="row">
 						<div class="col-12">
@@ -127,6 +186,7 @@
                                                     <thead>
                                                         <tr class="line">
                                                             <td><strong>#</strong></td>
+                                                            
                                                             <td class="text-center"><strong>IMAGE</strong></td>
                                                             <td class="text-center"><strong>PRODUCT</strong></td>
                                                             <td class="text-center"><strong>QUANTITY</strong></td>
@@ -145,16 +205,12 @@
                                                                     @if($item->title == $product->product_name)
                                                                         <!-- Display product details -->
                                                                         <tr>
-                                                                         
-
                                                                             <td>{{ $product->id }}</td>
                                                                             <td class="text-center"><img class="product-img" src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt=""></td>
                                                                             <td class="text-center"><strong>{{ $product->product_name }}</strong><br>{{ $product->full_detail }}</td>
                                                                             <td class="text-center">{{ $product->quantity }}</td>
                                                                             <td class="text-right">{{ $product->price }} DZD</td>
                                                                             <td class="text-right">{{ $product->quantity * $product->price }} DZD</td>
-
-                                                                            
                                                                         </tr>
 																		@php
             $totalAmount += $product->quantity * $product->price; // Accumulate totalAmount

@@ -1,5 +1,4 @@
 <html lang="en" dir="ltr"><!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Oct 2023 18:21:02 GMT -->
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -143,79 +142,59 @@
 					<!-- sidebar menu -->
 					<ul class="nav sidebar-inner" id="sidebar-menu">
 						<!-- Dashboard -->
-						<li class="active">
-							<a class="sidenav-item-link" href="/dashboardStat">
-								<i class="mdi mdi-view-dashboard-outline"></i>
-								<span class="nav-text">Dashboard</span>
-							</a>
-							<hr>
-						</li>
-
 					 
-
-					 
- 
-						<!-- Products -->
+						<!-- Vendors -->
 						<li class="has-sub">
+
+
 							<a class="sidenav-item-link" href="javascript:void(0)">
-								<i class="mdi mdi-palette-advanced"></i>
-								<span class="nav-text">Products</span> <b class="caret"></b>
+								<i class="mdi mdi-account-group-outline"></i>
+								<span class="nav-text">Vendors</span> <b class="caret"></b>
 							</a>
 							<div class="collapse">
-								<ul class="sub-menu" id="products" data-parent="#sidebar-menu">
-									<li class="">
-										        <a class="sidenav-item-link" href="{{ route('add-product-view') }}">
+								<ul class="sub-menu" id="vendors" data-parent="#sidebar-menu">
+								 
 
-											<span class="nav-text">Add Product</span>
-										</a>
-									</li>
 									<li class="">
-									<a class="sidenav-item-link" href="{{ route('productList') }}">
-											<span class="nav-text">List Product</span>
+										<a class="sidenav-item-link" href="{{ route('load-vendor-list') }}">
+											<span class="nav-text" >Vendor List</span>
 										</a>
 									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="{{ route('productGrid') }}">
-											<span class="nav-text">Grid Product</span>
-										</a>
-									</li>
-							 
+									 
 								</ul>
 							</div>
 						</li>
 
-						<!-- Orders -->
+						<!-- Users -->
 						<li class="has-sub">
-							<a class="sidenav-item-link" href="/orders">
-								<i class="mdi mdi-cart" href="/orders"></i>
-								<span class="nav-text" href="/orders">Orders</span> <b class="caret"></b>
-							</a>
-							<div class="collapse" href="/orders">
-								<ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
-									<li class="">
-										<a class="sidenav-item-link" href="new-order.html">
-											<span class="nav-text">New Order</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="order-history.html">
-											<span class="nav-text">Order History</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="order-detail.html">
-											<span class="nav-text">Order Detail</span>
-										</a>
-									</li>
-									<li class="">
-										<a class="sidenav-item-link" href="invoice.html">
-											<span class="nav-text">Invoice</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+ 
+ 
+  <a class="sidenav-item-link" href="javascript:void(0)">
+    <i class="mdi mdi-account-group"></i>
+    <span class="nav-text">Users</span> <b class="caret"></b>
+  </a>
+  <div class="collapse">
+    <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
+      <li>
+        <a class="sidenav-item-link" href="{{ route('load-user-grade') }}">
+          <span class="nav-text">User Grid</span>
+        </a>
+      </li>
 
+      <li class="">
+        <a class="sidenav-item-link" href="{{ route('load-users-list') }}">
+          <span class="nav-text" >User List</span>
+        </a>
+      </li>
+     
+    </ul>
+  </div>
+  <hr>
+</li>
+
+					 
+
+					 
 					 
 						<!-- Other Pages -->
 						<li class="has-sub">

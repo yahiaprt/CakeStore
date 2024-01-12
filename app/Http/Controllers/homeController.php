@@ -26,15 +26,24 @@ public function userSettings(){
     $user = Auth::user();
     $CustomerName = $user->name;
      $total = $request->input('total_hidden');
-    Order::create([
+if (!empty($productList)) {
+   $firstProduct = products::where('product_name', $productList[0]->title)->first();
+
+  $seller_id = $firstProduct->seller_id;
+  // Now $firstProduct contains the first product in the list
+  // You can use $firstProduct as needed
+ } 
+     Order::create([
         'user_id' => auth()->user()->id,
         'items' => json_encode($productList), // Convert array to JSON string
         'total_amount' => $total,
         'customer' => $CustomerName, // Include the 'customer_name' in the insert
         'status' => 'pending',
-        'price' => $request->input('seller_id'),
+        'price' => $seller_id,
         'customer_phone_number' => '$customerPhoneNumber', // Include the 'customer_phone_number' in the insert
     ]);
+
+
     return view('marketplace.home');
   }
     public function homeView()
