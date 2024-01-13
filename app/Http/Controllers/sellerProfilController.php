@@ -48,6 +48,8 @@ class sellerProfilController extends Controller
 
 }
 
+ 
+
     public function upadateProfile(Request $req) {
           $user = auth()->user();
           $seller = seller::find($user->id);
@@ -76,7 +78,7 @@ class sellerProfilController extends Controller
             $seller -> update(['address' => $req->input('address')]);
 
             
-          return view('vendor.sellerProfil', compact('seller'));
+            return back()->with('success', 'Profil Update was successful!');
 
     }
 

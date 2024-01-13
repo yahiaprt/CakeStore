@@ -41,12 +41,25 @@
 													</td>
  
 													<td>{{ $orders -> total_amount}} DZD</td>
- 													<td><span class="mb-2 mr-2 badge badge-success">payment successfully</span>
+ 													<td><span class="mb-2 mr-2 badge badge-success">payment successfully</span></td>
                                                      @if(isset($seller))
     <input type="hidden" name="seller_hidden" value="{{ $seller->id }}">
 @endif
-													<td><span class="mb-2 mr-2 badge badge-warning">Redy To Ship</span>
-													</td>
+<td>
+@if($orders->status == 'accept')
+
+<span class="mb-2 mr-2 badge badge-success">Accepted</span>
+@elseif($orders->status == 'refuse')
+<span class="mb-2 mr-2 badge badge-danger">Refused</span>
+@elseif($orders->status == 'delevered')
+                                                    <span class="mb-2 mr-2 badge badge-info">Delevered</span>
+                                                    @else
+
+                                                 <span class="mb-2 mr-2 badge badge-warning">Redy To Ship</span>
+
+@endif
+
+ 													</td>
 													<td>{{ $orders -> created_at}}</td>
 													<td>
 														<div class="btn-group mb-1">

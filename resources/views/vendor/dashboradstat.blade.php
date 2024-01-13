@@ -5,6 +5,115 @@
 
 			<!-- Header -->
 			<header class="ec-main-header" id="header">
+			
+
+			<style>
+                            *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+ .ec-sidebar-block-item {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between checkboxes */
+}
+
+.ec-sidebar-block-item input[type="checkbox"] {
+    display: none;
+}
+
+.ec-sidebar-block-item label {
+    position: relative;
+    padding-left: 30px; /* Adjust as needed */
+    cursor: pointer;
+    font-size: 14px; /* Adjust as needed */
+}
+
+.ec-sidebar-block-item label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    border: 2px solid #007bff; /* Adjust color as needed */
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.ec-sidebar-block-item input[type="checkbox"]:checked + label:before {
+    background-color: #007bff; /* Adjust color as needed */
+    border: 2px solid #007bff; /* Adjust color as needed */
+}
+
+/* Additional styling for checked state */
+.ec-sidebar-block-item span.checked {
+    position: absolute;
+    left: 5px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px; /* Adjust as needed */
+    height: 10px; /* Adjust as needed */
+    background-color: #007bff; /* Adjust color as needed */
+    border-radius: 50%;
+    display: none;
+}
+
+.ec-sidebar-block-item input[type="checkbox"]:checked + label + span.checked {
+    display: block;
+}
+
+/* Styling for scrollable row and content wrapper */
+.scrollable-row {
+    max-height: 2000px; /* Set the maximum height for the scrollable row */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+.ec-content-wrapper {
+    max-width: 2000px;
+    width: 100%; /* Set the width to 100% */
+    height: 1000px; /* Set the height as per your requirement */
+}
+</style>
+<link rel="stylesheet" href="marketplace/assets/css/vendor/ecicons.min.css">
+
 				<nav class="navbar navbar-static-top navbar-expand-lg">
 					<!-- Sidebar toggle button -->
 					<button id="sidebar-toggler" class="sidebar-toggle"></button>
@@ -745,8 +854,17 @@
  												<td class="d-none d-lg-table-cell">{{$orders->created_at}}</td>
 												<td class="d-none d-lg-table-cell">DZD {{$orders->total_amount}}</td>
 												<td>
-													<span class="badge badge-danger">{{$orders->status}}</span>
-												</td>
+												@if($orders->status == 'accept')
+
+<span class="mb-2 mr-2 badge badge-success">Accepted</span>
+@elseif($orders->status == 'refuse')
+<span class="mb-2 mr-2 badge badge-danger">Refused</span>
+@else
+
+                                                 <span class="mb-2 mr-2 badge badge-warning">Redy To Ship</span>
+
+@endif
+ 												</td>
 												<td class="text-right">
 													<div class="dropdown show d-inline-block widget-dropdown">
 														<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -855,7 +973,7 @@
 
 
                                     @foreach($products as $product)
-									@if($product-> rating > 4)
+									@if(($product-> rating) == 5)
 									<div class="row media d-flex pt-15px pb-15px">
 										<div class="col-lg-3 col-md-3 col-2 media-image align-self-center rounded">
 											<a href="#"><img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="customer image"></a>
@@ -864,11 +982,18 @@
 											<a href="#">
 												<h6 class="mb-10px text-dark font-weight-medium">{{$product->product_name}}</h6>
 											</a>
-											<p class="float-md-right sale"><span class="mr-2">58</span>Sales</p>
-											<p class="d-none d-md-block">{{$product->description}}</p>
+ 											<p class="d-none d-md-block">{{$product->description}}</p>
 											<p class="mb-0 ec-price">
 												<span class="text-dark">DZD {{$product->price}}</span>
+
  											</p>
+
+											 <div class="ec-pro-rating">
+												@for ($i = 0; $i < $product->rating; $i++)
+                                                <i class="ecicon eci-star fill"></i>
+  @endfor
+
+                                               </div>
 										</div>
 									</div>
 									@endif
