@@ -26,7 +26,7 @@
 
     <style>
         body {
-            background-image: url('assets/img/op4.jpg');
+            background-image: url('assets/img/ORFEYW0.jpg');
             background-size: cover;
             background-position: center;
             margin: 0;
@@ -72,45 +72,58 @@
 		// Change the window location to the specified route
 		window.location.href = route;
 	}
-</script>   
+</script>  
+
+
+
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="card-wrapper">
+        <!-- Card 1: Customer -->
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+            <div class="card-wrapper" onclick="navigateToRoute('/RoleUser')">
                 <div class="card-container">
                     <div class="card-top">
-					<img class="card-image" src="assets/img/op1.jpg" alt="" onclick="navigateToRoute('/RoleUser')">
-
-                 </div>
-                    <div class="card-bottom">
-                        <p>CUSTOMER</p>
-                    </div>
-                   
-                </div>
-
-
-
-
-				
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="card-wrapper">
-                <div class="card-container">
-                    <div class="card-top">
-					<img class="card-image" src="assets/img/op2.jpg" alt="" onclick="navigateToRoute('/RoleSeller')">
+                        <img class="card-image" src="assets/img/op0.jpg" alt="">
                     </div>
                     <div class="card-bottom">
                         <p>CUSTOMER</p>
                     </div>
-               
                 </div>
             </div>
         </div>
+
+        <!-- Card 2: Artisan -->
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+            <div class="card-wrapper" onclick="navigateToRoute('/RoleSeller')">
+                <div class="card-container">
+                    <div class="card-top">
+                        <img class="card-image" src="assets/img/op2.jpg" alt="">
+                    </div>
+                    <div class="card-bottom">
+                        <p>Artisan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Livreur -->
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+            <div class="card-wrapper" onclick="navigateToRoute('/adminlivreur')">
+                <div class="card-container">
+                    <div class="card-top">
+                        <img class="card-image" src="assets/img/oop3.jpg" alt="">
+                    </div>
+                    <div class="card-bottom">
+                        <p>Livreur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
 
 </body>
 </html>

@@ -47,8 +47,15 @@ Route::get('/orders', [OrderController::class, 'orders'])->name('orders');
 Route::get('/RoleUser', [usersListController::class, 'RoleUser'])->name('Role');
 Route::get('/RoleSeller', [usersListController::class, 'RoleSeller'])->name('Role');
 
+Route::get('/livreurProfil', [adminDashboardController::class, 'livreurProfil'])->name('livreurProfil');
+Route::get('/acceptShip/{id}', [adminDashboardController::class, 'acceptShip'])->name('acceptShip');
+Route::get('/refuseShip/{id}', [adminDashboardController::class, 'refuseShip'])->name('refuseShip');
+Route::get('/finishShip/{id}', [adminDashboardController::class, 'finishShip'])->name('finishShip');
 
+Route::get('/livreur', [adminDashboardController::class, 'livreur'])->name('livreur');
+Route::get('/adminlivreur', [adminDashboardController::class, 'adminlivreur'])->name('adminlivreur');
 
+ 
 Route::post('/Add-Product', [addProductController::class, 'addProduct'])->name('add-product');
 Route::get('/Add-Product-view', [addProductController::class, 'addProductView'])->name('add-product-view');
 Route::get('/productList', [addProductController::class, 'productListView'])->name('productList');
@@ -82,7 +89,8 @@ Route::get('/searchProduct', [SearchProductsController::class, 'searchProduct'])
 
 
  
- 
+Route::post('/livreurProfile', [sellerProfilController::class, 'upadateProfileLivreur'])->name('livreurProfile');
+
 
 Route::post('/load-users-list', [usersListController::class, 'addUser'])->name('user.addUser');
 Route::post('/load-vendor-list', [usersListController::class, 'addSeller'])->name('seller.addVendor');
