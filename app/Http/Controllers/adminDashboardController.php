@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\seller;
+use App\Models\users;
+
 use App\Models\Order;
 use App\Models\products;
 
@@ -49,11 +52,13 @@ class adminDashboardController extends Controller
         $orders = Order::all();
         $products = products::all();
         $seller = Auth()->user();
+        $users = users::all();
 
         return view('vendor.ordersLivreur', [
             'orders' => $orders,
             'products' => $products,
             'seller' => $seller,
+            'users' => $users,
         ]);
             }
     public function adminlivreur()
@@ -61,11 +66,13 @@ class adminDashboardController extends Controller
         $orders = Order::all();
         $products = products::all();
         $seller = Auth()->user();
+        $users = users::all();
 
         return view('layouts.adminLivreur', [
             'orders' => $orders,
             'products' => $products,
             'seller' => $seller,
+            'users' => $users,
         ]);
     }
     public function indexadminReal()

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <header  >
-    
+ 
   <!-- Include this in your HTML head to get the CSRF token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -13,6 +13,10 @@
  
 
                         <style>
+                            .arrow-button {
+    font-size: 20px;
+}
+
                             *{
     margin: 0;
     padding: 0;
@@ -140,7 +144,7 @@
         overflow-y: auto; /* Enable vertical scroll for the modal body */
     }
     
-</style>
+</style> 
 
                         <!-- Ec Header Search End -->
  
@@ -159,7 +163,9 @@
 <!-- Add the Product Details Modal -->
 
 <section class="section ec-category-section section-space-p" id="categories">
+    
     @foreach($seller as $seller)
+    <br>
 
         <div class="container">
             <div class="row">
@@ -180,8 +186,12 @@
                 <div class="col-lg-3">
                     <ul class="ec-cat-tab-nav nav" role="tablist">
                         <li class="cat-item"><a    class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1" aria-selected="true" role="tab">
-                                <div class="cat-icons"><img class="cat-icon" src="assets/images/icons/cat_1.png" alt="cat-icon"><img class="cat-icon-hover" src="assets/images/icons/cat_1_1.png" alt="cat-icon"></div>
-                                <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
+
+                        
+                                <div class="cat-icons"><img class="cat-icon" src="assets/images/icons/cat_3.png" alt="cat-icon"><img class="cat-icon-hover" src="assets/images/icons/cat_3_1.png" alt="cat-icon"></div>
+
+
+                                <div class="cat-desc"><span>{{$seller->store_name}}</span><span>40 Products</span></div>
                             </a>
                             <form id="ratingFormSeller" method="POST" action="{{ route('rateSeller') }}">
     @csrf
@@ -225,9 +235,20 @@
                     <div class="tab-content">
                         <!-- 1st Category tab end -->
                         <div class="tab-pane fade show active" id="tab-cat-1" role="tabpanel">
-                            <div class="row">
-                                <img src="assets/images/cat-banner/1.jpg" alt="">
-                            </div>
+                  
+
+<div class="row">
+    @if ($seller && $seller->store_image)
+        <img class="custom-image-style" src="{{ asset('images/products/' . $seller->store_image) }}" alt="">
+    @else
+        <!-- Add a default image or handle the case where no image is available -->
+        <div class="row">
+        <img class="custom-image-style" src="assets/images/cat-banner/2.jpg" alt="" style="max-width: 100%; max-height: 300px;">
+</div>
+    @endif
+</div>
+
+
                             <span class="panel-overlay">
                              <a   data-bs-toggle="modal" data-bs-target="#product{{ $seller->id }}" class="btn btn-outline-success details-btn" class="btn btn-primary">View All</a>
                         </div>
@@ -273,40 +294,53 @@
                                 <!-- Product Content -->
                                 @foreach($products as $product)
                                 @if($product->seller_id == $seller->id)
-<div class="modal" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">   
- <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height: 1000px;">
 
-        <div class="modal-content" style="max-width: 2000px; width: 2000%;height: 500%; max-height: 1000px;">
-            <div class="ec-content-wrapper" style="max-width: 2000px; width: 2000%;height: 500%; max-height: 1000px;">
-                <div class="content">
+
+                 
+                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
+           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1300px"style="background-color: black">
+
+        <div class="modal-content" style="max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px" style="background-color: #f5f0e1;">
+
+
+
+            <div class="ec-content-wrapper" style="max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px"style="background-color: #f5f0e1;">
+
+   
+<!-- 
+                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 90vw; width: 90vw; max-height: 80vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%; width: 100%; max-height: 200%; height: 100%;">
+    <div class="modal-content" style="max-width: 100%; width: 100%; max-height: 200%; height: 100%;  ">  
+                <div class="ec-content-wrapper" style="max-width: 100%; max-height: 200%; height: 100%;"> -->
+                    <div>
+       <button onclick="$('#product{{ $seller->id }}').modal('show');  $('#productDetailModal{{ $product->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
+ 
+</div>
+                <div class="content" >
+
                     <!-- Breadcrumb Section -->
                     <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                         <div>
-                             <h1>Product Detail </h1>
-                            <p class="breadcrumbs">
-                            <button onclick="$('#productDetailModal{{ $product->id }}').modal('hide');" class="w3-button w3-display-topright">&times;</button>
-
-                                <span><a href="/return">Return</a></span>
-                                <span><i class="mdi mdi-chevron-right"></i></span>Product
-                            </p>
+                        
                         </div>
                         <div>
-                            <a href="product-list.html" class="btn btn-primary">Edit</a>
-                        </div>
+  
+                 
+                         </div>
                     </div>
 
                     <!-- Main Content -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-default">
+                            <div class="card card-default"style="background-color: #f5f0e1;">
                                 <div class="card-header card-header-border-bottom">
-                                    <h2>Product Detail</h2>
+                                <h2>Product Detail </h2>
                                 </div>
                                 <div class="card-body product-detail">
                                     <!-- Product Images -->
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-6">
-                                            <div class="image-scroll-container">
+                                            <div class="image-scroll-container"style="background-color: white;">
                                                 <!-- Image Loop -->
                                                 @if(!empty($product->image_data) && json_decode($product->image_data) !== null)
                                                     @foreach (json_decode($product->image_data) as $image)
@@ -321,7 +355,7 @@
                                             <div class="row product-overview">
                                                 <!-- Product Details -->
                                                 <div class="col-12">
-                                                    <h5 class="product-title">{{$product->name}}</h5>
+                                                    <h5 class="product-title">{{$product->product_name}}</h5>
                                                     <!-- Rating Stars -->
                                                     <p class="product-rate">
                                                         @for($i = 0; $i < 4; $i++)
@@ -341,8 +375,8 @@
                                                         <h6>Available offers</h6>
                                                         <ul>
                                                             <!-- Offers Loop -->
-                                                            <li><b>Special Price :</b> Get extra 16% off (price inclusive of discount) <a href="#">T&amp;C</a></li>
-                                                            <li><b>Bank Offer :</b> 10% off on XYZ Bank Cards, up to $12. On orders of $200 and above <a href="#">T&amp;C</a></li>
+                                                            <li><b>Slug :</b> {{$product->slug}} <a href="#">T&amp;C</a></li>
+                                                            <li><b>Bank Offer :</b> 10% off on BaridiMob Bank Cards, up to DZD 120. On orders of DZD 2000 and above <a href="#">T&amp;C</a></li>
                                                             <!-- Add more offers as needed -->
                                                         </ul>
                                                     </div>
@@ -353,35 +387,15 @@
                                                     @endif
 
                                                     <!-- Product Size -->
-                                                    <ul class="product-size">
+                                                    <p class="product-price">Unity: 
+                                                   
                                                         @if(!empty($product->size) && is_array(json_decode($product->size)))
                                                             @foreach(json_decode($product->size) as $size)
-                                                            <p class="product-price">Unity: <span>{{ $size }}</span></p>
+                                                           <span>{{ $size }}</span></p>
 
                                                              @endforeach
                                                         @endif
-                                                    </ul>
-                                                    @if(!empty($product->stock))
-                                                    <p class="product-price">Stock : {{$product->stock}}</p>
-
-                                                             @endif
-                                                    @if(!empty($product->purchased_number))
-                                                    <p class="product-price">InOrder : {{$product->purchased_number}}</p>
-
-                                        
-                                                            @endif
-                                                    <!-- Product Type -->
-
-                                                    <!-- Product Color -->
-                                                    <ul class="product-color">
-                                                        @if(!empty($product->colors) && is_array(json_decode($product->colors)))
-                                                            @foreach(json_decode($product->colors) as $colors)
-                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
-
-                                                             @endforeach
-                                                        @endif
-                                                    </ul>
-
+                                                  
                                                     <!-- Product Stock and InOrder -->
                                                     <form id="ratingForm" method="POST" action="{{ route('rate') }}">
     @csrf
@@ -417,19 +431,24 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- Seller Information -->
+                                          <!-- Seller Information -->
                                         <div class="col-xl-3 col-lg-12 u-card">
                                             <div class="card card-default seller-card">
                                                 <div class="card-body text-center">
                                                     <!-- Seller Details -->
                                                     <a href="javascript:0" class="text-secondary d-inline-block">
+                                                        <h3>The Artisant</h3>
                                                         <!-- Seller Avatar -->
                                                         <div class="image mb-3">
-                                                            <img src="assets/img/user/u-xl-4.jpg" class="img-fluid rounded-circle" alt="Avatar Image">
-                                                        </div>
+                                                        @if ($seller && $seller->store_image)
+         <img src="{{ asset('images/products/' . $seller->store_image) }}" alt="">
+    @else
+  
+        <!-- Add a default image or handle the case where no image is available -->
+        <img src="assets/images/cat-banner/1.jpg" alt="">
+    @endif                                                        </div>
                                                         <!-- Seller Information -->
-                                                        <h5 class="text-dark">{{$seller->name}}</h5>
+                                                        <h5 class="text-dark">{{$seller->store_name}}</h5>
                                                         <!-- Seller Rating Stars -->
                                                         <p class="product-rate">
                                                             @for($i = 0; $i < 4; $i++)
@@ -441,7 +460,7 @@
                                                         <ul class="list-unstyled">
                                                         <li class="d-flex mb-1">
                                                                 <i class="mdi mdi-map mr-1"></i>
-                                                                <span>{{$seller->store}}</span>
+                                                                <span>{{$seller->name}}</span>
                                                             </li>
                                                             <li class="d-flex mb-1">
                                                                 <i class="mdi mdi-map mr-1"></i>
@@ -460,7 +479,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                      </div>
 
                                     <!-- Review Section -->
                                     <div class="row review-rating mt-4">
@@ -470,27 +490,39 @@
                                                     <a class="nav-link active" id="product-detail-tab" data-bs-toggle="tab" data-bs-target="#productdetail" href="#productdetail" role="tab" aria-selected="true">
                                                         <i class="mdi mdi-library-books mr-1"></i> Detail</a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="product-information-tab" data-bs-toggle="tab" data-bs-target="#productinformation" href="#productinformation" role="tab" aria-selected="false">
-                                                        <i class="mdi mdi-information mr-1"></i>Info</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="product-reviews-tab" data-bs-toggle="tab" data-bs-target="#productreviews" href="#productreviews" role="tab" aria-selected="false">
-                                                        <i class="mdi mdi-star-half mr-1"></i> Reviews</a>
-                                                </li>
+                                              
                                             </ul>
                                             <div class="tab-content" id="myTabContent2">
                                                 <!-- Detail Tab Content -->
                                                 <div class="tab-pane pt-3 fade show active" id="productdetail" role="tabpanel">
+                                                  
+                                                    <!-- Features List -->
+                                                    <ul class="features">
                                                     @if(!empty($product->full_detail))
                                                         <p>{{ $product->full_detail }}</p>
                                                     @endif
-                                                    <!-- Features List -->
-                                                    <ul class="features">
-                                                        <li>Explore a variety of cake types, from simple classics to customizable masterpieces.</li>
-                                                        <li>Indulge in our Downloadable/Digital Cake Collection and experience the magic of Virtual Cakes.</li>
-                                                        <li>Effortlessly manage your cake inventory, even with Backordered specialties.</li>
-                                                        <li>Savor the perfection of our cakes, crafted with precision and care, akin to the seamless beauty of flatlock seams.</li>
+                                                    @if(!empty($product->stock))
+                                                    <p class="product-price">Minimal quantity To order : {{$product->stock}}</p>
+
+                                                             @endif
+                                                    @if(!empty($product->purchased_number))
+                                                    <p class="product-price">InOrder : {{$product->purchased_number}}</p>
+
+                                        
+                                                            @endif
+                                                    <!-- Product Type -->
+
+                                                    <!-- Product Color -->
+                                                    <ul class="product-color">
+                                                        @if(!empty($product->colors) && is_array(json_decode($product->colors)))
+                                                            @foreach(json_decode($product->colors) as $colors)
+                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
+
+                                                             @endforeach
+                                                        @endif
+                                                    </ul>
+                                                        <li> {{$product->slug}}</li>
+                                                        <li> {{$product->full_detail}}.</li>
                                                     </ul>
                                                 </div>
 
@@ -501,7 +533,7 @@
                                                         <!-- Size Loop -->
                                                         @if (!empty($product->size) && is_array(json_decode($product->size)))
                                                             @foreach (json_decode($product->size) as $size)
-                                                                <li><span>Unity:</span> {{ $size }}</li>
+                                                                <li><span>Unity:{{ $size }}</span></li>
                                                             @endforeach
                                                         @else
                                                             No valid sizes available.
@@ -574,33 +606,45 @@
 
                  
         <div class="modal fade modal-add-contact" id="product{{ $seller->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
-           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1000px">  
+           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1300px">  
 
-        <div class="modal-content" style="max-width: 2000px; width: 2000%; " > 
-            <div class="ec-content-wrapper" style="max-width: 2000px; width: 2000%;  "  >
+        <div class="modal-content" style="background-color: #f5f0e1; max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px">  
+            <div class="ec-content-wrapper" style="background-color: #f5f0e1; max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px" >
+
+  
    
 
- 
-
+ <div>
+ <button onclick="$('#product{{ $seller->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
+<br>
+    </div>
+  
             <div class="row" >
-     
+
             @if(is_array($products) || is_object($products))
                                 <!-- Product Content -->
+                                
                                 @foreach($products as $product)
                                 @if($product->seller_id == $seller->id)
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content fadeIn" data-animation="fadeIn" data-animated="true">
-                                    <div class="ec-product-inner">
+                                    <div class="ec-product-inner" style="background-color: white">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
                                                 <a href="product-left-sidebar.html" class="image">
                                                 <img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="Product Image" style="max-width: 100%; height: auto;">
                                                  </a>
                                                 <span class="percentage">20%</span>
-                                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
-                                                <div class="ec-pro-actions">
+                                                 <div class="ec-pro-actions">
                                                     <a href="/storeView/{{$seller->id}}" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
-                                                    <button title="Add To Cart" class="add-to-cart"><i class="fi-rr-shopping-basket"></i> Add To Cart</button>
-                                                    <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
+                                                    <a title="Add To Cart" class="add-to-cart"><i class="fi-rr-shopping-basket"></i> Add To Cart</a>
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-eye"></i></a>
+                                                    <a
+        data-bs-toggle="modal" class="ec-btn-group wishlist" title="Wishlist"
+        data-bs-target="#productDetailModal{{ $product->id }}"
+        class="btn btn-outline-success details-btn"
+    >
+    <i class="fi-rr-eye"></i>
+    </a>
                                                 </div>
                                             <div class="ec-pro-loader"></div></div>
                                         </div>
@@ -608,28 +652,34 @@
                                             <h5 class="ec-pro-title">
                                                 <a href="product-left-sidebar.html">{{$product->product_name}}  </a></h5>
                                                 <h5 class="ec-pro-title-seller">
-                                                <a href="product-left-sidebar.html">{{$product->seller_id}}  </a></h5>
+ 
                                             <div class="ec-pro-rating">
-                                            @for ($i = 0; $i < $product->rating; $i++)
-    <i class="ecicon eci-star fill"></i>
+                                            <style>
+    .star {
+        font-size: 1em; /* Adjust the size as needed */
+        transform: rotate(45deg); /* Rotate the star to make it sharper */
+    }
+</style>
+
+@for ($i = 0; $i < $product->rating; $i++)
+    <span class="star">&#x2B50;</span> 
 @endfor
 
+
                                                </div>
+                                               <br>
+
                                             <span class="ec-price">
-    <span class="new-price">{{ $product->price }}</span>
+  
+    <span class="new-price">{{ $product->price }}DZD</span>
 
  
 
  
                                             <div class="ec-pro-option">
                                                 <div class="ec-pro-color">
-                                                <a
-        data-bs-toggle="modal"
-        data-bs-target="#productDetailModal{{ $product->id }}"
-        class="btn btn-outline-success details-btn"
-    >
-        Details
-    </a>
+
+ 
 
                                                 </div>
                            

@@ -104,8 +104,8 @@ class SearchProductsController extends Controller
 
       }  
 
-
-      return view('marketplace.searchProduct', ['products' => $result, 'searchType' => $searchType]); 
+ $seller = seller::all();
+      return view('marketplace.searchProduct', ['products' => $result, 'searchType' => $searchType , 'seller' => $seller]);  
        }
     
 
@@ -122,13 +122,18 @@ class SearchProductsController extends Controller
 
         $minPrice = $request->input("min_price");
         $maxPrice = $request->input("max_price");
-        return view  ('marketplace.searchProduct', ['products' => products::whereBetween('price', [$minPrice, $maxPrice])->get()]);
+        $searchType = 'product';
+
+        return view  ('marketplace.searchProduct', ['products' => products::whereBetween('price', [$minPrice, $maxPrice])->get()], ['searchType' => $searchType]);
       }
 
       public function searchRatingProductName(Request $request) {
 
          $rating = $request->input("rating");
-            return view  ('marketplace.searchProduct', ['products' => products::where('rating', '>=', $rating)->get()]);
+         $products = products::where('rating', '>=', $rating)->get();
+         $searchType = 'product';
+         
+              return view  ('marketplace.searchProduct', ['products' => $products], ['searchType' => $searchType]);
      
       }
     }

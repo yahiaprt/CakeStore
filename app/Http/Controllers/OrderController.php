@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\users;
+
+
+
+
+
 
 class OrderController extends Controller
 {
@@ -22,9 +28,9 @@ class OrderController extends Controller
         
         $products = products::all();
 
+        $user = users::all();
 
-
-        return view('vendor.orders', compact('orders'), compact('products'));
+        return view('vendor.orders', compact('orders'), compact('products', 'user'));
     }
     public function store(Request $request)
     {
