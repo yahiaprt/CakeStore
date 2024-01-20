@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\product;
 use App\Models\Order;
+use App\Models\seller;
 use App\Models\users;
 
 class homeController extends Controller
@@ -16,15 +17,20 @@ class homeController extends Controller
 public function userSettings(){
   $user = Auth::user();
 
-  return view('marketplace.CustomerProfil', compact('user'));
-  }
- 
+  if($user != null) {
 
-  public function insertProducts(Request $request)
+  return view('marketplace.CustomerProfil', compact('user'));
+  } else {
+    return view('auth.register');
+  }  
+
+}
+   public function insertProducts(Request $request)
   {
     $productList = json_decode($request->input('listOfProducts'));
     $user = Auth::user();
     $CustomerName = $user->name;
+    $customerPhoneNumber = $user->phone_number;
      $total = $request->input('total_hidden');
 if (!empty($productList)) {
    $firstProduct = products::where('product_name', $productList[0]->title)->first();
@@ -40,18 +46,23 @@ if (!empty($productList)) {
         'customer' => $CustomerName, // Include the 'customer_name' in the insert
         'status' => 'pending',
         'price' => $seller_id,
-        'customer_phone_number' => '$customerPhoneNumber', // Include the 'customer_phone_number' in the insert
+        'customer_phone_number' => $customerPhoneNumber, // Include the 'customer_phone_number' in the insert
     ]);
 
-
-    return view('marketplace.home');
+   $products = products::where('rating', '=', 5)->get();
+    $seller = seller::where('rating', '=', 5)->get();
+    return view('marketplace.home', compact('user'), compact('products', 'seller'));
   }
     public function homeView()
   {
     $user = Auth::user();
-    return view('marketplace.home', compact('user'));
+    $products = products::all();
+    $products = products::where('rating', '=', 5)->get();
+    $seller = seller::where('rating', '=', 5)->get();
+    
+    return view('marketplace.home', compact('user'), compact('products', 'seller'));
   }
-
+ 
   public function searchProduct($request)
   {
     $productName = $request->input('product_name');

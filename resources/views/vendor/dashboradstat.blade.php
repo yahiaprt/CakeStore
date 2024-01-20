@@ -972,34 +972,40 @@
 
 
 
-                                    @foreach($products as $product)
-									@if(($product-> rating) == 5)
-									<div class="row media d-flex pt-15px pb-15px">
-										<div class="col-lg-3 col-md-3 col-2 media-image align-self-center rounded">
-											<a href="#"><img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="customer image"></a>
-										</div>
-										<div class="col-lg-9 col-md-9 col-10 media-body align-self-center ec-pos">
-											<a href="#">
-												<h6 class="mb-10px text-dark font-weight-medium">{{$product->product_name}}</h6>
-											</a>
- 											<p class="d-none d-md-block">{{$product->description}}</p>
-											<p class="mb-0 ec-price">
-												<span class="text-dark">DZD {{$product->price}}</span>
+								@php
+    $productsChunks = $products->chunk(2); // Chunk the products into pairs
+@endphp
 
- 											</p>
+@foreach($productsChunks as $productPair)
+    <div class="row">
+        @foreach($productPair as $product)
+            @if(($product->rating) == 5)
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="row media d-flex pt-15px pb-15px">
+                        <div class="col-lg-3 col-md-3 col-4 media-image align-self-center rounded">
+                            <a href="#"><img src="{{ asset('images/products/' . json_decode($product->image_data)[0]) }}" alt="customer image"></a>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-8 media-body align-self-center ec-pos">
+                            <a href="#">
+                                <h6 class="mb-10px text-dark font-weight-medium">{{$product->product_name}}</h6>
+                            </a>
+                            <p class="d-none d-md-block">{{$product->description}}</p>
+                            <p class="mb-0 ec-price">
+                                <span class="text-dark">DZD {{$product->price}}</span>
+                            </p>
+                            <div class="ec-pro-rating">
+                                @for ($i = 0; $i < $product->rating; $i++)
+                                    <i>⭐</i>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    </div>
+@endforeach
 
-											 <div class="ec-pro-rating">
-												@for ($i = 0; $i < $product->rating; $i++)
-                                                <i class="ecicon eci-star fill"></i>
-  @endfor
-
-                                               </div>
-										</div>
-									</div>
-									@endif
-									@endforeach
-
-							 
 
 
 

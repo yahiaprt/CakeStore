@@ -173,6 +173,24 @@
   background-size: cover;
   background-position: center;
 }
+.ec-slide-33 {
+  background-image: url("../images/main-slider-banner/3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.ec-slide-4 {
+  background-image: url("../images/main-slider-banner/4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.ec-slide-5 {
+  background-image: url("../images/main-slider-banner/5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
 .ec-slide-3 {
   background-image: url("../images/main-slider-banner/3.html");
@@ -198,7 +216,7 @@
 .ec-slide-content .ec-slide-title {
   margin-bottom: 25px;
   padding-top: 25px;
-  color: #555;
+  color: #fff8f8;
   font-size: 65px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -219,7 +237,7 @@
 .ec-slide-content .ec-slide-stitle {
   font-size: 50px;
   font-weight: 400;
-  color: #444444;
+  color: #fcf1f1;
   margin-bottom: 11px;
   text-transform: uppercase;
   letter-spacing: 1.6px;
@@ -407,8 +425,8 @@
 
 .btn-primary {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 .btn-primary:hover {
   color: #ffffff;
@@ -417,13 +435,13 @@
 }
 .btn-primary:focus {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 .btn-primary:active {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 
 .btn-color-dark {
@@ -450,30 +468,30 @@
 }
 .btn-check:focus + .btn-primary {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 .btn-check:checked + .btn-primary {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 .btn-check:active + .btn-primary {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 
 .btn-primary.active {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 
 .show > .btn-primary.dropdown-toggle {
   color: #ffffff;
-  background-color: #3474d4;
-  border-color: #3474d4;
+  background-color: #fd0d0d;
+  border-color: #fd0d0d;
 }
 
 /*-------------------------------------------------

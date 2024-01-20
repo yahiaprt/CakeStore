@@ -1,6 +1,7 @@
 @extends('layouts.homeLayout')
 @section('homecontent')
 <head>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +27,10 @@
 
 
 
- 
+  <style>
+    .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.7) !important; /* Set the opacity as needed */    }
+</style>
 
 
 
@@ -124,7 +128,7 @@
 														<div class="btn-group mb-1">
 														<div class="modal fade modal-add-contact" id="orderDetails{{ $orders->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 90%;">
-        <div class="modal-content">
+        <div class="modal-content"style = " background-color: rgba(255, 255, 255, 0.9);">>
             <div class="ec-content-wrapper">
                 <div class="content">
                     <div class="breadcrumb-wrapper breadcrumb-wrapper-2">
@@ -150,10 +154,9 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Customer:</strong></div><br>
                                                 <div class="info-content">
-                                                    Twitter, Inc.<br>
-                                                    795 Folsom Ave, Suite 600<br>
-                                                    San Francisco, CA 94107<br>
-                                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                                {{ $user->name }}<br>
+                                                    {{ $user->address }}<br>
+                                                    <abbr title="Phone">P:</abbr>  {{ $user->phone_number }}
                                                 </div>
                                             </address>
                                         </div>
@@ -162,10 +165,8 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Shipped To:</strong></div><br>
                                                 <div class="info-content">
-                                                    Elaine Hernandez<br>
-                                                    P. Sherman 42,<br>
-                                                    Wallaby Way, Sidney<br>
-                                                    <abbr title="Phone">P:</abbr> (123) 345-6789
+                                                     {{ $user->address }}<br>
+                                                    <abbr title="Phone">P:</abbr>   {{ $user->phone_number }}
                                                 </div>
                                             </address>
                                         </div>
@@ -174,8 +175,8 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Payment Method:</strong></div><br>
                                                 <div class="info-content">
-                                                    Visa ending **** 1234<br>
-                                                    h.elaine@gmail.com<br>
+                                                BaridiMob<br>
+                                                   {{$user -> email}}    <br>
                                                 </div>
                                             </address>
                                         </div>
@@ -184,8 +185,7 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Order Date:</strong></div><br>
                                                 <div class="info-content">
-                                                    4:34PM,<br>
-                                                    Wed, Aug 13, 2020
+                                                  {{$user -> created_at}}<br>
                                                 </div>
                                             </address>
                                         </div>
@@ -254,10 +254,7 @@
                                     </div>
                                     <!-- Tracking Detail -->
                                     <div class="card mt-4 trk-order">
-                                        <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
-                                            <span class="text-uppercase">Tracking Order No - </span>
-                                            <span class="text-medium">34VB5540K83</span>
-                                        </div>
+                                        
                                         <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
                                             <div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped Via:</span> UPS Ground</div>
                                             <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Checking Quality</div>

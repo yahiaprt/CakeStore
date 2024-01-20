@@ -37,7 +37,7 @@
     }
 
     .btn-primary {
-        background-color: #3498db;
+        background-color: #fd0d0d;
         color: #fff;
         border: none;
         padding: 10px 20px;
@@ -47,7 +47,7 @@
     }
 
     .btn-primary:hover {
-        background-color: #217dbb;
+        background-color: #fd0d0d;
     }
 
     .card-header h2 {

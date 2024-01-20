@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use  App\Models\users;
 use  App\Models\seller;
+use  App\Models\products;
 use Illuminate\Support\Facades\Auth;
 
  class usersListController extends Controller
@@ -51,9 +52,9 @@ use Illuminate\Support\Facades\Auth;
     {
         
         $user = Auth::user();
-       
-         
-        return view('marketplace.home', ['user' => $user]);
+        $products = products::all();
+        $products = products::where('rating', '=', 5)->get();
+        return view('marketplace.home', compact('user'), compact('products'));
       }
     public function loadUsersList()
     {

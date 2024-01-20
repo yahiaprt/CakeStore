@@ -6,22 +6,25 @@
 					<div class="breadcrumb-wrapper breadcrumb-contacts">
 						<div>
 							<h1>User Profile</h1>
-							<p class="breadcrumbs"><span><a href="index-2.html">Home</a></span>
-								<span><i class="mdi mdi-chevron-right"></i></span>Profile
-							</p>
+  							</p>
 						</div>
 						<div>
-							<a href="user-list.html" class="btn btn-primary">Edit</a>
-						</div>
+ 						</div>
 					</div>
 					<div class="card bg-white profile-content">
 						<div class="row">
 							<div class="col-lg-4 col-xl-3">
 								<div class="profile-content-left profile-left-spacing">
 									<div class="text-center widget-profile px-0 border-0">
-										<div class="card-img mx-auto rounded-circle">
-											<img src="assets/img/user/u1.jpg" alt="user image">
-										</div>
+									<div class="row">
+@if ($seller && $seller->store_image)
+         <img src="{{ asset('images/products/' . $seller->store_image) }}" alt="">
+    @else
+  
+        <!-- Add a default image or handle the case where no image is available -->
+        <img src="assets/images/cat-banner/1.jpg" alt="">
+    @endif
+</div>
 										<div class="card-body">
 											<h4 class="py-2 text-dark">{{$seller->name}}</h4>
 											<p>{{$seller->email}}</p>
@@ -194,8 +197,8 @@
 																		<a class="mt-0 mb-1 font-size-15 text-dark" href="#">Adress</a><br>
 																		<input type="text" name="address" value="{{$seller->address}}" class='form-control' style='height: 40px;'> </input>
 																	</div>
-																	<span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 9
-																		AM</span>
+																	<span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 
+																		</span>
 																</div>
 																
 
@@ -208,7 +211,7 @@
         <a class="mt-0 mb-1 font-size-15 text-dark" href="#">Description</a><br>
         <input type='text' name='description' value='{{ $seller->description }}' class='form-control' style='height: 40px;'>
     </div>
-    <span class="font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
+    <span class="font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>  </span>
 </div>
 
 																
@@ -225,8 +228,8 @@
 																		<a class="mt-0 mb-1 font-size-15 text-dark" href="#">closing Time</a> <br>
 																		<input type='time' Name='opening_time' value='{{ $seller -> opening_time }}'>	
 																	</div>
-																	<span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 10
-																		AM</span>
+																	<span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 
+																		</span>
 																</div>
                                                                     <button type="submit" class="btn btn-primary">Update</button>
  
@@ -245,7 +248,7 @@
 											<div class="tab-pane-content mt-5">
 
 
-												<form method="POST" action="/sellerProfile">
+												<form method="POST" action="/sellerProfile"enctype="multipart/form-data">
 
 
 
@@ -254,7 +257,8 @@
 														<label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
 														<div class="col-sm-8 col-lg-10">
 															<div class="custom-file mb-1">
-																<input type="file" class="custom-file-input" id="coverImage" required="">
+ 																<input type="file" id="imageUpload" class="custom-file-input" name="image" required="" accept=".png, .jpg, .jpeg">
+ 
 																<label class="custom-file-label" for="coverImage">Choose
 																	file...</label>
 																<div class="invalid-feedback">Example invalid custom

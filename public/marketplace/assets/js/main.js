@@ -448,19 +448,17 @@ function ecCheckCookie()
         // get an image url
         var img_url = $(this).parents().parents().children(".image").find(".main-image").attr("src");
         var p_name = $(this).parents().parents().parents().children(".ec-pro-content").children("h5").children("a").html();      
-        var p_name_seller = $(this).parents().parents().parents().children(".ec-pro-content-seller").children("h5").children("a").html();        
-  
+   
         var p_price = $(this).parents().parents().parents().children(".ec-pro-content").children(".ec-price").children(".new-price").html();
         
         var p_html = '<li>'+
                          '<div class="ec-pro-content">'+
                             '<a href="product-left-sidebar.html" class="cart_pro_title">'+ p_name +'</a>'+
-                            '<a href="product-left-sidebar.html" class="cart_pro_title">'+ p_name_seller +'</a>'+
-
+ 
                         '<span class="cart-price"><span class = "price">'+ p_price  +
-                            '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>'+
+                            '<div class="qty-plus-minus"><div class="dec ec_qtybtn"></div>'+
                                 '<input class="qty-input" type="text" name="ec_qtybtn" value="1">'+
-                            '<div class="inc ec_qtybtn">+</div></div>'+
+                            '<div class="inc ec_qtybtn"></div></div>'+
                             '<a href="javascript:void(0)" class="remove">×</a>'+
                         '</div>'+
                     '</li>';

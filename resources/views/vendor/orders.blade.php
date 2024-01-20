@@ -91,10 +91,16 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Customer:</strong></div><br>
                                                 <div class="info-content">
-                                                    Twitter, Inc.<br>
-                                                    795 Folsom Ave, Suite 600<br>
-                                                    San Francisco, CA 94107<br>
-                                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                                @forEach ($users as $user)
+                                                    @if ($orders->price == $user->id)
+                                                   
+                                                    {{ $user->name }}<br>
+                                                    {{ $user->address }}<br>
+                                                    <abbr title="Phone">P:</abbr> {{$user -> phone_number}}
+
+
+                                                      @endif
+                                                    @endforeach
                                                 </div>
                                             </address>
                                         </div>
@@ -103,9 +109,13 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Shipped To:</strong></div><br>
                                                 <div class="info-content">
-                                                    Elaine Hernandez<br>
-                                                    P. Sherman 42,<br>
-                                                    Wallaby Way, Sidney<br>
+                                                @forEach ($users as $user)
+                                                    @if ($orders->price == $user->id)
+                                                     {{ $user->address }}<br>
+                                                      @endif
+                                                    @endforeach
+
+
                                                     <abbr title="Phone">P:</abbr> (123) 345-6789
                                                 </div>
                                             </address>
@@ -113,10 +123,15 @@
                                         <!-- Payment Method -->
                                         <div class="col-xl-3 col-lg-6">
                                             <address class="info-grid">
-                                                <div class="info-title"><strong>Payment Method:</strong></div><br>
+                                                <div class="info-title">
+                                                    <strong>Payment Method:</strong></div><br>
                                                 <div class="info-content">
-                                                    Visa ending **** 1234<br>
-                                                    h.elaine@gmail.com<br>
+                                                BaridiMob<br>
+                                                    @forEach ($users as $user)
+                                                    @if ($orders->price == $user->id)
+                                                     {{ $user->email }}<br>
+                                                      @endif
+                                                    @endforeach
                                                 </div>
                                             </address>
                                         </div>
@@ -125,8 +140,8 @@
                                             <address class="info-grid">
                                                 <div class="info-title"><strong>Order Date:</strong></div><br>
                                                 <div class="info-content">
-                                                    4:34PM,<br>
-                                                    Wed, Aug 13, 2020
+                                                {{$orders->created_at}}<br>
+
                                                 </div>
                                             </address>
                                         </div>
@@ -198,10 +213,7 @@
                                     </div>
                                     <!-- Tracking Detail -->
                                     <div class="card mt-4 trk-order">
-                                        <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
-                                            <span class="text-uppercase">Tracking Order No - </span>
-                                            <span class="text-medium">34VB5540K83</span>
-                                        </div>
+                                    
                                         <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
                                             <div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped Via:</span> UPS Ground</div>
                                             <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> Checking Quality</div>

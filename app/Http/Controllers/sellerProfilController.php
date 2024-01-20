@@ -17,8 +17,16 @@ class sellerProfilController extends Controller
     
     $orders = Order::where('user_id', auth()->user()->id)->get();
     $products = products::all();
+    $user = Auth::user();
+    if($user != null) {
 
-      return view('marketplace.ordersCustomer',   ['orders' => $orders], ['products' => $products] );
+
+
+      return view('marketplace.ordersCustomer',  compact('orders'), compact('products', 'user'));
+    }
+    else {
+      return view('auth.register');
+    }
   }
    public function productsList($id){
     
@@ -29,9 +37,14 @@ class sellerProfilController extends Controller
     public function sellerProfileView()
     {
         $user = auth()->user();
-        $seller = seller::find($user->id);
-        return view('vendor.sellerProfil', compact('seller'));
-    }
+        if($user != null) {
+          $seller = seller::find($user->id);
+          return view('vendor.sellerProfil', compact('seller'));
+        }
+        else {
+          return view('auth.register');
+        }
+     }
 
 
     public function upadateSellerProfile(Request $req) {
@@ -53,7 +66,7 @@ class sellerProfilController extends Controller
     public function upadateProfile(Request $req) {
           $user = auth()->user();
           $seller = seller::find($user->id);
- 
+
           if($req->input('email') != null)   
           $seller -> update(['email' => $req->input('email')]);
           if($req->input('phone_number') != null)
@@ -77,6 +90,19 @@ class sellerProfilController extends Controller
             if($req->input('address') != null)
             $seller -> update(['address' => $req->input('address')]);
 
+ 
+            if ($req->hasFile('image')) {
+                $image = $req->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/products'), $imageName);
+                $seller->update([
+                  'store_image' => $imageName,  // Update the column name accordingly
+                  // Add other fields you may want to update
+              ]);
+             } else {
+                // Handle the case where no image is uploaded
+                // You might want to provide a message to the user or take other actions.
+            }
             
             return back()->with('success', 'Profil Update was successful!');
 

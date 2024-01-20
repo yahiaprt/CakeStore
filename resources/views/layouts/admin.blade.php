@@ -131,12 +131,7 @@
 		<div class="ec-left-sidebar ec-bg-sidebar">
 			<div id="sidebar" class="sidebar ec-sidebar-footer">
 
-				<div class="ec-brand">
-					<a href="index-2.html" title="Ekka">
-						<img class="ec-brand-icon" src="assets/img/logo/ec-site-logo.png" alt="">
-						<span class="ec-brand-name text-truncate">Ekka</span>
-					</a>
-				</div>
+	
 
 				<!-- begin sidebar scrollbar -->
 				<div class="ec-navigation" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-ec-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
@@ -243,14 +238,14 @@
 			<header class="ec-main-header" id="header">
 				<nav class="navbar navbar-static-top navbar-expand-lg">
 					<!-- Sidebar toggle button -->
-					<button id="sidebar-toggler" class="sidebar-toggle"></button>
-					<!-- search form -->
+ 					<!-- search form -->
 					<div class="search-form d-lg-inline-block">
 						<div class="input-group">
-							<input type="text" name="query" id="search-input" class="form-control" placeholder="search.." autofocus="" autocomplete="off">
-							<button type="button" name="search" id="search-btn" class="btn btn-flat">
-								<i class="mdi mdi-magnify"></i>
-							</button>
+						<div  >
+						<a href="/home"> <br>
+ <img src="marketplace/assets/images/logo/logo.png" alt="Site Logo" style="width: 300px; height: 70px;">  <br>
+ </a>
+				</div>
 						</div>
 						<div id="search-results-container">
 							<ul id="search-results"></ul>
