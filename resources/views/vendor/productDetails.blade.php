@@ -18,7 +18,7 @@
                         <div class="col-12">
                             <div class="card card-default">
                                 <div class="card-header card-header-border-bottom">
-                                    <h2>Product Detail</h2>
+                                    <h2> &nbsp; Product Detail</h2>
                                 </div>
                                 <div class="card-body product-detail">
                                     <div class="row">
@@ -50,14 +50,14 @@
                                                         <h6>Available offers</h6>
                                                         <ul>
                                                             <li><b>Special Price :</b> Get extra 16% off (price
-                                                                inclusive of discount) <a href="#">T&amp;C</a> </li>
+                                                                inclusive of discount) <a href="#"></a> </li>
                                                             <li><b>Bank Offer :</b> 10% off on XYZ Bank Cards, up to
-                                                                $12. On orders of $200 and above <a href="#">T&amp;C</a>
+                                                                $12. On orders of $200 and above <a href="#"></a>
                                                             </li>
                                                             <li><b>Bank Offer :</b> 5% Unlimited Cashback on Ekka XYZ
-                                                                Bank Credit Card <a href="#">T&amp;C</a></li>
+                                                                Bank Credit Card <a href="#"></a></li>
                                                             <li><b>Bank Offer :</b> Flat $50 off on first Ekka Pay Later
-                                                                order of $200 and above <a href="#">T&amp;C</a></li>
+                                                                order of $200 and above <a href="#"></a></li>
                                                         </ul>
                                                     </div>
                                                     @if(!empty($products->image_data) && json_decode($products->image_data) !== null)
@@ -74,7 +74,12 @@
                                                     <ul class="product-color">
                                                         @if(!empty($products->colors) && json_decode($products->colors) !== null)
                                                             @foreach(json_decode($products->colors) as $colors)
-                                                                <li class="colors"><span>{{ $colors }}</span></li>
+                                                                <li class="colors"><span>        @if(($colors) == 'M') 
+                                                             Salleé
+                                                             @elseif(($colors) == 'S')
+                                                             Sucré
+                                                             @endif              
+                                                        </span></li>
                                                             @endforeach
                                                         @endif
                                                     </ul>

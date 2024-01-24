@@ -26,7 +26,7 @@
 
     <style>
         body {
-            background-image: url('assets/img/ORFEYW0.jpg');
+            background-image: url('assets/img/032.jpg');
             background-size: cover;
             background-position: center;
             margin: 0;
@@ -84,7 +84,7 @@
             <div class="card-wrapper" onclick="navigateToRoute('/RoleUser')">
                 <div class="card-container">
                     <div class="card-top">
-                        <img class="card-image" src="assets/img/op0.jpg" alt="">
+                        <img class="card-image" src="assets/img/oop1.jpg" alt="">
                     </div>
                     <div class="card-bottom">
                         <p>CUSTOMER</p>
@@ -112,7 +112,7 @@
             <div class="card-wrapper" onclick="navigateToRoute('/adminlivreur')">
                 <div class="card-container">
                     <div class="card-top">
-                        <img class="card-image" src="assets/img/oop3.jpg" alt="">
+                        <img class="card-image" src="assets/img/op0.jpg" alt="">
                     </div>
                     <div class="card-bottom">
                         <p>Livreur</p>

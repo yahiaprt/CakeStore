@@ -3,14 +3,9 @@
         @csrf
 
         <!-- Name -->
+ 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="first_name" :value="__('First Name')" />
             <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -31,13 +26,13 @@
 
  
         <div>
-    <x-input-label for="birthdate" :value="__('BirthDay')" />
+    <x-input-label for="birthdate" :value="__('Birth Day')" />
     <x-text-input id="birthdate" class="block mt-1 w-full" type="text" name="birthdate" :value="old('birthdate')" required autofocus autocomplete="birthdate" />
     <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
 </div>
 
         <div>
-            <x-input-label for="address" :value="__('phone_number')" />
+            <x-input-label for="address" :value="__('Phone Number')" />
             <x-text-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>

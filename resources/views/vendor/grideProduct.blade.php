@@ -355,13 +355,21 @@
 													<p class="product-price">Unity: </p>
 @endif
  													<ul class="product-size">
-	 @if(!empty($products->size) && json_decode($products->size) !== null)
+    @if(!empty($products->size))
+        @php
+            $sizeArray = json_decode($products->size);
+        @endphp
 
-    @foreach(json_decode($products->size) as $size)
-        <li class="size"><span> {{ $size }}</span></li>
-    @endforeach
-@endif
+        @if (is_array($sizeArray) || is_object($sizeArray))
+            @foreach($sizeArray as $size)
+                <li class="size"><span>{{ $size }}</span></li>
+            @endforeach
+        @else
+            <li class="size"><span>{{ $sizeArray }}</span></li>
+        @endif
+    @endif
 </ul>
+
 <p class="product-price">Type: </p>
 
 													<ul class="product-color">
@@ -437,9 +445,20 @@
 														{{ $products->stock  }}
 													@endif
 													</li>
-													@if(isset($products->stock))
+													@if ($products->size)
+    @php
+        $sizes = json_decode($products->size, true);
+    @endphp
 
-														@foreach(json_decode($products->size) as $size)		<li><span>Unity:</span> {{ $size  }}</li> @endforeach @endif
+    @if (is_array($sizes))
+        @foreach($sizes as $size)
+            <li><span>Unity:</span> {{ $size }}</li>
+        @endforeach
+    @else
+        <li><span>Unity:</span> {{ $sizes }}</li>
+    @endif
+@endif
+
 														@if(isset($products->colors))
 														@if(json_decode($products->colors) != null)	
 		@foreach(json_decode($products->colors) as $colors)		

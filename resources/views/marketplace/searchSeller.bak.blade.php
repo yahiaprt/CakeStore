@@ -213,7 +213,7 @@
                         <div class="col-12">
                             <div class="card card-default">
                                 <div class="card-header card-header-border-bottom">
-                                    <h2>Product Detail</h2>
+                                    <h2>&nbsp; Product Detail</h2>
                                 </div>
                                 <div class="card-body product-detail">
                                     <div class="row">

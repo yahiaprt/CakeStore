@@ -30,7 +30,8 @@ class seller extends Model
         'closing_time',
         'store_name',
         'rating',
-        'store_image'
+        'store_image',
+        'store_type'
     ];
     
 }

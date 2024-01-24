@@ -6,6 +6,49 @@
 
 <header  >
  
+<style>
+    .rateSeller {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+    .rateSeller:not(:checked) > input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rateSeller:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+    .rateSeller:not(:checked) > label:before {
+        content: '★ ';
+    }
+
+    .rateSeller > input:checked ~ label {
+        color: #ffc700;    
+    }
+
+    .rateSeller:not(:checked) > label:hover,
+    .rateSeller:not(:checked) > label:hover ~ label {
+        color: #deb217;  
+    }
+
+    .rateSeller > input:checked + label:hover,
+    .rateSeller > input:checked + label:hover ~ label,
+    .rateSeller > input:checked ~ label:hover,
+    .rateSeller > input:checked ~ label:hover ~ label,
+    .rateSeller > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+</style>
   <!-- Include this in your HTML head to get the CSRF token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -164,7 +207,7 @@
 
 <section class="section ec-category-section section-space-p" id="categories">
     
-    @foreach($seller as $seller)
+    @foreach($sellers as $seller)
     <br>
 
         <div class="container">
@@ -191,40 +234,44 @@
                                 <div class="cat-icons"><img class="cat-icon" src="assets/images/icons/cat_3.png" alt="cat-icon"><img class="cat-icon-hover" src="assets/images/icons/cat_3_1.png" alt="cat-icon"></div>
 
 
-                                <div class="cat-desc"><span>{{$seller->store_name}}</span><span>40 Products</span></div>
+                                <div class="cat-desc"><span>{{$seller->store_name}}</span><span><br><br>
+                                    
+                                <b>Open at {{$seller->closing_time}}</b> <br> <br>
+<b>Close at {{$seller->opening_time}}</b>
+
+                                </span></div>
                             </a>
-                            <form id="ratingFormSeller" method="POST" action="{{ route('rateSeller') }}">
+                            <form class="ratingForm" method="POST" action="{{ route('rateSeller') }}">
     @csrf
 
-    <div class="rate">
-    <input type="radio" id="star5" name="rateSeller" value="5" {{ $seller->rating == 5 ? 'checked' : '' }} />
-    <label for="star5" title="text">5 stars</label>
+    <div class="rateSeller">
+        <input type="radio" id="star5_{{ $seller->id }}" name="rateSeller" value="5" {{ $seller->rating == 5 ? 'checked' : '' }} />
+        <label for="star5_{{ $seller->id }}" title="text">5 stars</label>
 
-    <input type="radio" id="star4" name="rateSeller" value="4" {{ $seller->rating == 4 ? 'checked' : '' }} />
-    <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star4_{{ $seller->id }}" name="rateSeller" value="4" {{ $seller->rating == 4 ? 'checked' : '' }} />
+        <label for="star4_{{ $seller->id }}" title="text">4 stars</label>
 
-    <input type="radio" id="star3" name="rateSeller" value="3" {{ $seller->rating == 3 ? 'checked' : '' }} />
-    <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star3_{{ $seller->id }}" name="rateSeller" value="3" {{ $seller->rating == 3 ? 'checked' : '' }} />
+        <label for="star3_{{ $seller->id }}" title="text">3 stars</label>
 
-    <input type="radio" id="star2" name="rateSeller" value="2" {{ $seller->rating == 2 ? 'checked' : '' }} />
-    <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star2_{{ $seller->id }}" name="rateSeller" value="2" {{ $seller->rating == 2 ? 'checked' : '' }} />
+        <label for="star2_{{ $seller->id }}" title="text">2 stars</label>
 
-    <input type="radio" id="star1" name="rateSeller" value="1" {{ $seller->rating == 1 ? 'checked' : '' }} />
-    <label for="star1" title="text">1 star</label>
-    <input type="radio" id="star0" name="rateSeller" value="1" {{ $seller->rating == 0 ? 'checked' : '' }} />
-    <label for="star1" title="text">0 star</label>
-</div>
-
-    <input type="hidden" name="id" value="{{ $seller->id }}">
+        <input type="radio" id="star1_{{ $seller->id }}" name="rateSeller" value="1" {{ $seller->rating == 1 ? 'checked' : '' }} />
+        <label for="star1_{{ $seller->id }}" title="text">1 star</label>
+    </div>
+    <input type="hidden" name="idseller" value="{{ $seller->id }}"> 
 </form>
 
 <script>
     $(document).ready(function () {
-        $('.rate input').on('click', function () {
-            $('#ratingFormSeller').submit();
+        $('.rateSeller input').on('click', function () {
+            var form = $(this).closest('form');
+            form.submit();
         });
     });
 </script>
+
                         </li>
                    
                     </ul>
@@ -297,14 +344,14 @@
 
 
                  
-                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
-           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1300px"style="background-color: black">
+                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background-color: rgba(245, 240, 225, 0); max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
+           <div class="modal-dialog modal-dialog-centered" role="document" style="background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%; height: 500%; max-height:1300px"style="background-color: black">
 
-        <div class="modal-content" style="max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px" style="background-color: #f5f0e1;">
+        <div class="modal-content" style="background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px" style="background-color: #f5f0e1;">
 
 
 
-            <div class="ec-content-wrapper" style="max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px"style="background-color: #f5f0e1;">
+            <div class="ec-content-wrapper" style="background-color: rgba(245, 240, 225, 0); max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px"style="background-color: #f5f0e1;">
 
    
 <!-- 
@@ -312,10 +359,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%; width: 100%; max-height: 200%; height: 100%;">
     <div class="modal-content" style="max-width: 100%; width: 100%; max-height: 200%; height: 100%;  ">  
                 <div class="ec-content-wrapper" style="max-width: 100%; max-height: 200%; height: 100%;"> -->
-                    <div>
-       <button onclick="$('#product{{ $seller->id }}').modal('show');  $('#productDetailModal{{ $product->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
- 
-</div>
+              
                 <div class="content" >
 
                     <!-- Breadcrumb Section -->
@@ -333,8 +377,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card card-default"style="background-color: #f5f0e1;">
-                                <div class="card-header card-header-border-bottom">
-                                <h2>Product Detail </h2>
+                                <div class="card-header card-header-border-bottom">      <div>
+       <button onclick="$('#product{{ $seller->id }}').modal('show');  $('#productDetailModal{{ $product->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
+ 
+</div>
+
+                                <h2> &nbsp; Product Detail </h2>
                                 </div>
                                 <div class="card-body product-detail">
                                     <!-- Product Images -->
@@ -375,8 +423,8 @@
                                                         <h6>Available offers</h6>
                                                         <ul>
                                                             <!-- Offers Loop -->
-                                                            <li><b>Slug :</b> {{$product->slug}} <a href="#">T&amp;C</a></li>
-                                                            <li><b>Bank Offer :</b> 10% off on BaridiMob Bank Cards, up to DZD 120. On orders of DZD 2000 and above <a href="#">T&amp;C</a></li>
+                                                            <li><b>Slug :</b> {{$product->slug}} <a href="#"></a></li>
+                                                            <li><b>Bank Offer :</b> 10% off on BaridiMob Bank Cards, up to DZD 120. On orders of DZD 2000 and above <a href="#"></a></li>
                                                             <!-- Add more offers as needed -->
                                                         </ul>
                                                     </div>
@@ -397,33 +445,33 @@
                                                         @endif
                                                   
                                                     <!-- Product Stock and InOrder -->
-                                                    <form id="ratingForm" method="POST" action="{{ route('rate') }}">
-    @csrf
+                                                    <form class="ratingForm" method="POST" action="{{ route('rate') }}">
+        @csrf
 
-    <div class="rate">
-    <input type="radio" id="star5" name="rate" value="5" {{ $product->rating == 5 ? 'checked' : '' }} />
-    <label for="star5" title="text">5 stars</label>
+        <div class="rate">
+            <input type="radio" id="star5_{{ $product->id }}" name="rate" value="5" {{ $product->rating == 5 ? 'checked' : '' }} />
+            <label for="star5_{{ $product->id }}" title="text">5 stars</label>
 
-    <input type="radio" id="star4" name="rate" value="4" {{ $product->rating == 4 ? 'checked' : '' }} />
-    <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star4_{{ $product->id }}" name="rate" value="4" {{ $product->rating == 4 ? 'checked' : '' }} />
+            <label for="star4_{{ $product->id }}" title="text">4 stars</label>
 
-    <input type="radio" id="star3" name="rate" value="3" {{ $product->rating == 3 ? 'checked' : '' }} />
-    <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star3_{{ $product->id }}" name="rate" value="3" {{ $product->rating == 3 ? 'checked' : '' }} />
+            <label for="star3_{{ $product->id }}" title="text">3 stars</label>
 
-    <input type="radio" id="star2" name="rate" value="2" {{ $product->rating == 2 ? 'checked' : '' }} />
-    <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star2_{{ $product->id }}" name="rate" value="2" {{ $product->rating == 2 ? 'checked' : '' }} />
+            <label for="star2_{{ $product->id }}" title="text">2 stars</label>
 
-    <input type="radio" id="star1" name="rate" value="1" {{ $product->rating == 1 ? 'checked' : '' }} />
-    <label for="star1" title="text">1 star</label>
-   
-    </div>
-    <input type="hidden" name="id" value="{{ $product->id }}">
-</form>
-
-<script>
+            <input type="radio" id="star1_{{ $product->id }}" name="rate" value="1" {{ $product->rating == 1 ? 'checked' : '' }} />
+            <label for="star1_{{ $product->id }}" title="text">1 star</label>
+        </div>
+        <input type="hidden" name="id" value="{{ $product->id }}"> 
+    </form>
+ 
+ <script>
     $(document).ready(function () {
         $('.rate input').on('click', function () {
-            $('#ratingForm').submit();
+            var form = $(this).closest('form');
+            form.submit();
         });
     });
 </script>
@@ -438,6 +486,8 @@
                                                     <!-- Seller Details -->
                                                     <a href="javascript:0" class="text-secondary d-inline-block">
                                                         <h3>The Artisant</h3>
+                                                        <br>
+
                                                         <!-- Seller Avatar -->
                                                         <div class="image mb-3">
                                                         @if ($seller && $seller->store_image)
@@ -516,7 +566,12 @@
                                                     <ul class="product-color">
                                                         @if(!empty($product->colors) && is_array(json_decode($product->colors)))
                                                             @foreach(json_decode($product->colors) as $colors)
-                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
+                                                            <p class="product-price">Type: <span>        @if(($colors) == 'M') 
+                                                             Salleé
+                                                             @elseif(($colors) == 'S')
+                                                             Sucré
+                                                             @endif              
+                                                        </span></p>
 
                                                              @endforeach
                                                         @endif

@@ -326,12 +326,12 @@
     <div id="productOptions" style="display: none; margin-top: 10px;">
         <!-- Additional options for searching products -->
         <div class="ec-sidebar-block-item">
-            <input type="checkbox" id="clothes" name="colors[]" value="salle">
+            <input type="checkbox" id="clothes" name="colors[]" value="M">
             <label for="clothes">🍕 Salleé</label>
         </div>
 
         <div class="ec-sidebar-block-item">
-            <input type="checkbox" id="bags" name="colors[]" value="sucre">
+            <input type="checkbox" id="bags" name="colors[]" value="S">
             <label for="bags">🍪 Sucré</label>
         </div>
 
@@ -717,8 +717,8 @@
             });
 
             // Update the total element
-            $('#total').text('$' + total.toFixed(2));
-            $('#total_hidden').text('$' + total.toFixed(2));
+            $('#total').text('DZD ' + total.toFixed(2));
+            $('#total_hidden').text('DZD ' + total.toFixed(2));
             document.getElementById('total_hidden').value = total.toFixed(2);
 
         }
@@ -765,8 +765,11 @@
             <div class="ec-cart-title">
                 <span class="cart_title">My Cart</span>
                 <button class="ec-close">×</button>
+                 
+        
             </div>
-            <ul class="eccart-pro-items" id="cart-items">
+            
+             <ul class="eccart-pro-items" id="cart-items">
                 <!-- Cart items will be dynamically added here -->
  
             </ul>
@@ -3013,46 +3016,7 @@
     
     <!-- Header End  -->
 
-    <!-- ekka Cart Start -->
-    
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    
-                </ul>
-            </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ekka Cart End -->
+  
 
     <!-- Category Sidebar start -->
     <div class="ec-side-cat-overlay"></div>

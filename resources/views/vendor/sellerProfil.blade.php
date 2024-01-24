@@ -26,7 +26,7 @@
     @endif
 </div>
 										<div class="card-body">
-											<h4 class="py-2 text-dark">{{$seller->name}}</h4>
+											<h4 class="py-2 text-dark">{{$seller->store_name}}</h4>
 											<p>{{$seller->email}}</p>
 											<a class="btn btn-primary my-3" href="#">Follow</a>
 										</div>
@@ -155,21 +155,38 @@
 
 																	<div class="media-body pr-3 ">
 																	<div id="size-options" class="col-md-8 mb-25">
-        <label class="form-label">Cake Type</label>
-        <div class="form-checkbox-box">
-            <div class="form-check form-check-inline">
-                <input type="checkbox" name="colors[]" value="S">
-                <label>sucré</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="checkbox" name="colors[]" value="M">
-                <label>salé</label>
-            </div>
-			<div class="form-check form-check-inline">
-                <input type="checkbox" name="colors[]" value="M">
-                <label>les deux</label>
-            </div>
-        </div>
+        <label class="form-label">Store Type</label>
+		<div class="form-checkbox-box">
+    <div class="form-check form-check-inline">
+		
+        @if(!empty($seller->store_type) && is_array(json_decode($seller->store_type)))
+             @if(json_decode($seller->store_type)[0] == 'S')
+                <input type="checkbox" name="store_type[]" value="S" checked>
+            @else
+                <input type="checkbox" name="store_type[]" value="S">
+            @endif
+
+			@else
+			<input type="checkbox" name="store_type[]" value="S">
+
+        @endif
+        <label>sucré</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        @if(!empty($seller->store_type) && is_array(json_decode($seller->store_type)))
+            @if(json_decode($seller->store_type)[0] == 'M')
+                <input type="checkbox" name="store_type[]" value="M" checked>
+            @else
+                <input type="checkbox" name="store_type[]" value="M">
+            @endif
+			@else
+			<input type="checkbox" name="store_type[]" value="M">
+        @endif
+        <label>salé</label>
+    </div>
+</div>
+
     </div>
 
 																	</div>
@@ -257,7 +274,7 @@
 														<label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
 														<div class="col-sm-8 col-lg-10">
 															<div class="custom-file mb-1">
- 																<input type="file" id="imageUpload" class="custom-file-input" name="image" required="" accept=".png, .jpg, .jpeg">
+ 																<input type="file" id="imageUpload" class="custom-file-input" name="image"   accept=".png, .jpg, .jpeg">
  
 																<label class="custom-file-label" for="coverImage">Choose
 																	file...</label>
@@ -271,7 +288,7 @@
 														<div class="col-lg-6">
 															<div class="form-group">
 																<label for="firstName">First name</label>
-																<input type="text" class="form-control" id="first_name" name="first_name" value="{{$seller->first_name}}">
+																<input type="text" class="form-control" id="first_name" name="first_name" value="{{$seller->name}}">
 															</div>
 														</div>
 
@@ -294,7 +311,7 @@
 
 													<div class="form-group mb-4">
 														<label for="userName">User name</label>
-														<input type="text" class="form-control" id="userName" value="{{$seller->first_name}}">
+														<input type="text" class="form-control" id="userName" value="{{$seller->name}}">
 														<span class="d-block mt-1">Accusamus nobis at omnis consequuntur
 															culpa tempore saepe animi.</span>
 													</div>

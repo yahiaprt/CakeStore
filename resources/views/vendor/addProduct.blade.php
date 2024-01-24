@@ -106,20 +106,7 @@
         <input type="text" class="form-control slug-title" id="product_name" name="product_name">
     </div>
 
-    <div class="col-md-6">
-        <label class="form-label">Select Categories</label>
-        <select name="categories" id="category" class="form-select">
-            <optgroup label="Fashion">
-                <option value="t-shirt">sucré</option>
-                <option value="dress">cake</option>
-            </optgroup>
-            <optgroup label="Furniture">
-                <option value="table">sallee</option>
-                <option value="sofa">mini pizza</option>
-            </optgroup>
-           
-        </select>
-    </div>
+  
 
     <div class="col-md-12">
         <label for="slug" class="col-12 col-form-label">Slug</label>
@@ -129,7 +116,7 @@
     </div>
 
 	<div id="size-options" class="col-md-8 mb-25">
-        <label class="form-label">Cake Type</label>
+        <label class="form-label"> Type</label>
         <div class="form-checkbox-box">
             <div class="form-check form-check-inline">
                 <input type="checkbox" name="colors[]" value="S">
