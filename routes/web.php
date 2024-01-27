@@ -57,6 +57,8 @@ Route::get('/adminlivreur', [adminDashboardController::class, 'adminlivreur'])->
 
  
 Route::post('/Add-Product', [addProductController::class, 'addProduct'])->name('add-product');
+Route::post('/update-Product', [addProductController::class, 'update'])->name('update-product');
+
 Route::get('/Add-Product-view', [addProductController::class, 'addProductView'])->name('add-product-view');
 Route::get('/productList', [addProductController::class, 'productListView'])->name('productList');
 Route::get('/productGrid', [addProductController::class, 'productGridView'])->name('productGrid');

@@ -11,7 +11,11 @@
     .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.7) !important; /* Set the opacity as needed */    }
 </style>
-
+<style>
+  .invisible-background {
+    background-color: rgba(245, 240, 225, 0); /* Transparent background */
+  }
+</style>
     <style>
         * {
             margin: 0;
@@ -297,22 +301,7 @@
                                                 <div class="ec-pro-size">
                                                     <span class="ec-pro-opt-label">Size</span>
                                                     <ul class="ec-opt-size">
-                                                    @if ($products->size !== null)
-    @php
-        $sizes = json_decode($products->size);
-    @endphp
-
-    @if ($sizes !== null)
-        @foreach ($sizes as $size)
-            <li class="active">
-                <a href="#" class="ec-opt-sz" data-old="$12.00" data-new="$10.00" data-tooltip="Small">
-                    {{ $size }}
-                </a>
-            </li>
-        @endforeach
-    @endif
-@endif
-
+                                                     
                                                     </ul>
                                                 </div>
                                             </div>
@@ -331,19 +320,14 @@
 
 
   @endif
-  <div class="modal fade modal-add-contact" id="productDetailModal{{ $products->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
-           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1300px">  
+  <div class="modal fade modal-add-contact" id="productDetailModal{{ $products->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background-color: rgba(245, 240, 225, 0); max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
+           <div class="modal-dialog modal-dialog-centered" role="document" style="background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%; height: 500%; max-height:1300px">  
 
-        <div class="modal-content" style="  max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px">  
-            <div class="ec-content-wrapper" style="max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px">  
+        <div class="modal-content" style=" background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px">  
+            <div class="ec-content-wrapper" style="background-color: rgba(245, 240, 225, 0); max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px">  
    
  
-                 <div class="content" >   
-                    <div>
-                        <button onclick="$('#productDetailModal{{ $products->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
- 
- <br>
-    </div>
+  
                     <!-- Breadcrumb Section -->
                     <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
                         <div>
@@ -357,9 +341,18 @@
 
                     <!-- Main Content -->
                     <div class="row">
-                        <div class="col-12">
+                        
+                        <div class="col-12">               <div class="content" >   
+                  
                             <div class="card card-default"style="background-color: #f5f0e1;">
                                 <div class="card-header card-header-border-bottom">
+                                    
+                                <div style="display: flex; align-items: center;">
+  <button onclick="$('#productDetailModal{{ $products->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
+ </div>
+ 
+ 
+ 
                                 <h2>Product Detail </h2>
                                 </div>
                                 <div class="card-body product-detail">
@@ -417,33 +410,33 @@
                                                  
                                                   
                                                     <!-- Product Stock and InOrder -->
-                                                    <form id="ratingForm" method="POST" action="{{ route('rate') }}">
-    @csrf
+                                                    <form class="ratingForm" method="POST" action="{{ route('rate') }}">
+        @csrf
 
-    <div class="rate">
-    <input type="radio" id="star5" name="rate" value="5" {{ $products->rating == 5 ? 'checked' : '' }} />
-    <label for="star5" title="text">5 stars</label>
+        <div class="rate">
+            <input type="radio" id="star5_{{ $products->id }}" name="rate" value="5" {{ $products->rating == 5 ? 'checked' : '' }} />
+            <label for="star5_{{ $products->id }}" title="text">5 stars</label>
 
-    <input type="radio" id="star4" name="rate" value="4" {{ $products->rating == 4 ? 'checked' : '' }} />
-    <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star4_{{ $products->id }}" name="rate" value="4" {{ $products->rating == 4 ? 'checked' : '' }} />
+            <label for="star4_{{ $products->id }}" title="text">4 stars</label>
 
-    <input type="radio" id="star3" name="rate" value="3" {{ $products->rating == 3 ? 'checked' : '' }} />
-    <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star3_{{ $products->id }}" name="rate" value="3" {{ $products->rating == 3 ? 'checked' : '' }} />
+            <label for="star3_{{ $products->id }}" title="text">3 stars</label>
 
-    <input type="radio" id="star2" name="rate" value="2" {{ $products->rating == 2 ? 'checked' : '' }} />
-    <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star2_{{ $products->id }}" name="rate" value="2" {{ $products->rating == 2 ? 'checked' : '' }} />
+            <label for="star2_{{ $products->id }}" title="text">2 stars</label>
 
-    <input type="radio" id="star1" name="rate" value="1" {{ $products->rating == 1 ? 'checked' : '' }} />
-    <label for="star1" title="text">1 star</label>
-   
-    </div>
-    <input type="hidden" name="id" value="{{ $products->id }}">
-</form>
-
-<script>
+            <input type="radio" id="star1_{{ $products->id }}" name="rate" value="1" {{ $products->rating == 1 ? 'checked' : '' }} />
+            <label for="star1_{{ $products->id }}" title="text">1 star</label>
+        </div>
+        <input type="hidden" name="id" value="{{ $products->id }}"> 
+    </form>
+ 
+ <script>
     $(document).ready(function () {
         $('.rate input').on('click', function () {
-            $('#ratingForm').submit();
+            var form = $(this).closest('form');
+            form.submit();
         });
     });
 </script>
@@ -468,7 +461,7 @@
                                                         <!-- Seller Avatar -->
                                                         <div class="image mb-3">
                                                         @if ($item && $item->store_image)
-         <img src="{{ asset('images/products/' . $seller->store_image) }}" alt="">
+         <img src="{{ asset('images/products/' . $item->store_image) }}" alt="">
     @else
   
         <!-- Add a default image or handle the case where no image is available -->
@@ -528,7 +521,16 @@
                                                 <ul class="product-color">
                                                         @if(!empty($products->colors) && is_array(json_decode($products->colors)))
                                                             @foreach(json_decode($products->colors) as $colors)
-                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
+                                                            <p class="product-price">Type: <span>
+                                                                
+                                                        @if(($colors) == 'M') 
+                                                             Salleé
+                                                             @elseif(($colors) == 'S')
+                                                             Sucré
+                                                             @endif              
+                                                        
+                                                        
+                                                        </span></p>
 
                                                              @endforeach
                                                         @endif

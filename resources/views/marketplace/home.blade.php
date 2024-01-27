@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/style.css">
 <style type="text/css">.scrollax-performance, .scrollax-performance *, .scrollax-performance *:before, .scrollax-performance *:after { pointer-events: none !important; -webkit-animation-play-state: paused !important; animation-play-state: paused !important; };</style><link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css"><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/55/8/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/55/8/util.js"></script></head>
+    
 <style>
     .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.7) !important; /* Set the opacity as needed */    }
@@ -1027,7 +1028,8 @@
         <p> <span class="star"> &#x2B50;</span><span class="star"> &#x2B50;</span><span class="star"> &#x2B50;</span><span class="star"> &#x2B50;</span><span class="star"> &#x2B50;</span></p>                            
                                              <div class="ec-pro-list-desc">{{$products->full_detail}}.</div>
                                             <span class="ec-price">
-                                                <span class="new-price">DZD {{$products->price}}</span>
+                                              <span class="new-price">{{$products->price}}</span>&nbsp;  DZD  
+
                                             </span>
                                             <div class="ec-pro-option">
                                                 <div class="ec-pro-color">
@@ -1066,27 +1068,28 @@
 
 
               
-                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $products->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
-           <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 2000px; width: 2000%; height: 500%; max-height:1300px">  
+                                <div class="modal fade modal-add-contact" id="productDetailModal{{ $products->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background-color: rgba(245, 240, 225, 0); max-width: 3000px; width: 3000%; hight: 500%; max-hight:1000px  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" >  
+           <div class="modal-dialog modal-dialog-centered" role="document" style="background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%; height: 500%; max-height:1300px">  
 
-        <div class="modal-content" style="max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px">  
-            <div class="ec-content-wrapper" style="max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px">  
+        <div class="modal-content" style="background-color: rgba(245, 240, 225, 0); max-width: 2000px; width: 2000%;  height: 500%; max-height:1300px">  
+            <div class="ec-content-wrapper" style="background-color: rgba(245, 240, 225, 0); max-width: 1950px; width: 2000%;  height: 500%; max-height:1300px">  
    
 
 
                  <div class="content">
                     <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
-                        <div>
-                                  <button onclick="$('#productDetailModal{{ $products->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
-
-                        </div>
+                 
                       
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card card-default"style="background-color: #f5f0e1;">
                                 <div class="card-header card-header-border-bottom">
-                                    <h2>Product Detail</h2>
+                                <div>
+                                  <button onclick="$('#productDetailModal{{ $products->id }}').modal('hide');" class="btn btn-primary" style="font-size: 30px; display: flex; align-items: center; justify-content: center;">&#8592;</button>
+
+                        </div>
+                                    <h2>&nbsp; Product Detail</h2>
                                 </div>
                                 <div class="card-body product-detail">
                                     <div class="row">
@@ -1122,8 +1125,8 @@
                                                     <div class="ec-ofr">
                                                         <h6>Available offers</h6>
                                                         <ul>
-                                                        <li><b>Slug :</b> {{$products->slug}} <a href="#">T&amp;C</a></li>
-                                                            <li><b>Bank Offer :</b> 10% off on BaridiMob paiments, up to DZD 120. On orders of DZD 2000 and above <a href="#">T&amp;C</a></li>
+                                                        <li><b>Slug :</b> {{$products->slug}} <a href="#"></a></li>
+                                                            <li><b>Bank Offer :</b> 10% off on BaridiMob paiments, up to DZD 120. On orders of DZD 2000 and above <a href="#"></a></li>
                                                             <!-- Add more offers as needed -->
                                                         </ul>
                                                     </div>
@@ -1193,13 +1196,13 @@
                                                         <br>
                                                         <!-- Seller Avatar -->
                                                         <div class="image mb-3">
-                                                        @if ($item && $item->store_image)
-         <img src="{{ asset('images/products/' . $seller->store_image) }}" alt="">
-    @else
-  
-        <!-- Add a default image or handle the case where no image is available -->
-        <img src="assets/images/cat-banner/1.jpg" alt="">
-    @endif                                                        </div>
+                                                        @if ($item && property_exists($item, 'store_image') && $item->store_image)
+    <img src="{{ asset('images/products/' . $item->store_image) }}" alt="">
+@else
+    <!-- Add a default image or handle the case where no image is available -->
+    <img src="assets/images/cat-banner/1.jpg" alt="">
+@endif
+                       </div>
                                                         <!-- Seller Information -->
                                                         <h5 class="text-dark">{{$item->store_name}}</h5>
                                                         <!-- Seller Rating Stars -->
@@ -1256,7 +1259,12 @@
                                                     <ul class="product-color">
                                                         @if(!empty($products->colors) && is_array(json_decode($products->colors)))
                                                             @foreach(json_decode($products->colors) as $colors)
-                                                            <p class="product-price">Type: <span>{{ $colors }}</span></p>
+                                                            <p class="product-price">Type: <span>        @if(($colors) == 'M') 
+                                                             Salleé
+                                                             @elseif(($colors) == 'S')
+                                                             Sucré
+                                                             @endif            
+                                                        </span></p>
 
                                                              @endforeach
                                                         @endif
@@ -1470,7 +1478,8 @@
 							
 							<h3 class="heading"><a href="#">{{$seller->store_name}}</a></h3>
  <div class="meta">
-								<div><h4 href="#">{{$seller->name}}</h4></div>
+								<div><h4 href="#">Artisant: {{$seller->name}}</h4></div>
+                                <br>
 								<div><h6 href="#">{{$seller->description}}</h6></div>
 							</div>
 

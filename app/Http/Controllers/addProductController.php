@@ -47,24 +47,38 @@ class addProductController extends Controller
     $seller = seller::find($user->id);
     $products = products::where('seller_id', $seller->id)->get();
      $orders = DB::table('orders')->where('price', $user->id)->get();
-     
-     return view('vendor.productsList', ['products' => $products], ['orders' => $orders] );
-  }
- 
+     $users = users::all();
+     return view('vendor.productsList', compact('products', 'orders', 'users'));
+    }
   public function addProduct(Request $request)
   {
     $sellerId = seller::where('email', auth()->user()->email)->first()->id;
+    if ($request->hasFile('images')) {
+      $image_data = [];
 
-    foreach ($request->file('images') as $image) {
-      $imageName = time() . '.' . $image->getClientOriginalExtension();
-      $image->move(public_path('images/products'), $imageName);
- 
-      $image_data[] = $imageName;
+      foreach ($request->file('images') as $key => $image) {
+          // Validate the file type
+          $extension = $image->getClientOriginalExtension();
+          $allowedExtensions = ['png', 'jpg', 'jpeg'];
 
-  }
+          if (!in_array($extension, $allowedExtensions)) {
+              // Handle invalid file type error
+              return redirect()->back()->with('error', 'Invalid file type. Please upload PNG, JPG, or JPEG images.');
+          }
+
+          // Generate a unique name for each image
+          $imageName = time() . '_' . $key . '.' . $extension;
+
+          // Move the image to the desired directory
+          $image->move(public_path('images/products'), $imageName);
+
+          $image_data[] = $imageName;
+      }
+
+
     products::create([
       'product_name' => $request->input('product_name'),
-      'category' => $request->input('categories'),
+      'category' => '',
       'slug' => $request->input('slug'),
       'size' => json_encode($request->input('size')),
       'colors' => json_encode($request->input('colors')), // Encode the array to JSON
@@ -84,8 +98,89 @@ class addProductController extends Controller
 
     return redirect()->route('add-product-view');
   }
+  }
 
-  public function deleteProduct($id)
+  public function update(Request $request)
+  {
+      // Validate request data
+     
+  
+      // Find the product by its ID (you need to replace 'Product' with your actual model class)
+      $product = products::find($request->input('product_id'));
+  
+      if (!$product) {
+          // Handle the case where the product is not found
+          return redirect()->back()->with('error', 'Product not found.');
+      }
+       // Handle image upload if images are present
+      if ($request->hasFile('images')) {
+          $image_data = [];
+  
+          foreach ($request->file('images') as $key => $image) {
+              // Validate the file type
+              $extension = $image->getClientOriginalExtension();
+              $allowedExtensions = ['png', 'jpg', 'jpeg'];
+  
+              if (!in_array($extension, $allowedExtensions)) {
+                  // Handle invalid file type error
+                  return redirect()->back()->with('error', 'Invalid file type. Please upload PNG, JPG, or JPEG images.');
+              }
+  
+              // Generate a unique name for each image
+              $imageName = time() . '_' . $key . '.' . $extension;
+  
+              // Move the image to the desired directory
+              $image->move(public_path('images/products'), $imageName);
+  
+              $image_data[] = $imageName;
+          }
+  
+          // Update the product with image data
+          $product->update([
+              'image_data' => json_encode($image_data),
+          ]);
+      }
+  
+      // Define default values for specific fields
+      $defaults = [
+          'size' => json_encode([]), // Set default value for 'size' if null
+          'colors' => json_encode([]), // Set default value for 'colors' if null
+          'price' => 0, // Set default value for 'price' if null
+          'full_detail' => '', // Set default value for 'full_detail' if null
+          // Add more fields with default values as needed
+          'slug' => '',
+          
+
+
+
+      ];
+      if($request->input('slug')== null) {
+        $defaults['slug'] = $request->input('product_name');
+      }
+  
+      // Merge default values with the request data
+      $requestData = array_merge($defaults, $request->all());
+  
+      // Update other product details with merged request data
+      $product->update([
+          'product_name' => $requestData['product_name'],
+          'category' => '',
+          'slug' => $requestData['slug'],
+          'size' => json_encode($requestData['size']),
+          'colors' => json_encode($requestData['colors']),
+          'price' => $requestData['price'],
+          'full_detail' => $requestData['full_detail'],
+          'stock' => $requestData['stock'],
+          'quantity' => $requestData['stock'], // Check if this is correct
+          'category_id' => '2',
+          'title' => $requestData['product_name'],
+          'description' => $requestData['product_name'],
+      ]);
+  
+      return redirect()->route('productList');
+  }
+   
+    public function deleteProduct($id)
 {
      $product = products::find($id);
      $product->delete();

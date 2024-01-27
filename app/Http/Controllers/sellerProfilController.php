@@ -72,7 +72,7 @@ class sellerProfilController extends Controller
           if($req->input('phone_number') != null)
             $seller -> update(['phone_number' => $req->input('phone_number')]);
             if($req->input('first_name') != null)
-            $seller -> update(['first_name' => $req->input('first_name')]);
+            $seller -> update(['name' => $req->input('first_name')]);
             if($req->input('last_name') != null)
             $seller -> update(['last_name' => $req->input('last_name')]);
             if($req->input('phone_number') != null)
@@ -89,6 +89,9 @@ class sellerProfilController extends Controller
             $seller -> update(['description' => $req->input('description')]);
             if($req->input('address') != null)
             $seller -> update(['address' => $req->input('address')]);
+
+            if($req->input('colors') != null)
+            $seller -> update(['store_type' => $req->input('colors')]);
 
  
             if ($req->hasFile('image')) {

@@ -16,17 +16,20 @@ class SearchProductsController extends Controller
   public function rate(request $request){
      $rating = $request->input('rate');
       $id = $request->input('id');
-      $product = products::find($id);
-      $product->update([
+       $product = products::find($id);
+        $product->update([
         'rating' => $rating
     ]);
      return redirect()->back();
      }
 
-     public function rateSeller(request $request){
+     public function rateSeller(request $request){  
+ 
       $rating = $request->input('rateSeller');
-       $id = $request->input('id');
-       $seller = seller::find($id);
+       $id = $request->input('idseller');
+ 
+         $seller = seller::find($id);
+          
         $seller->update([
          'rating' => $rating
      ]);
@@ -60,9 +63,8 @@ class SearchProductsController extends Controller
 
          $products = products::query();
     
-         $productName = $request->input('product_name');
-
-         if ($selectedColors == 'all') {
+         $productName = $request->input('search_query');
+          if ($selectedColors == 'all') {
             $products->where('product_name', 'LIKE', "%{$productName}%");
 
             return view('marketplace.searchProduct', ['products' => $products]);
@@ -71,7 +73,7 @@ class SearchProductsController extends Controller
             $products->where('product_name', 'LIKE', "%{$productName}%");
          }
          if (!empty($selectedColors)) {
-            $products->where(function ($query) use ($selectedColors) {
+             $products->where(function ($query) use ($selectedColors) {
                 foreach ($selectedColors as $color) {
                     $query->orWhere('colors', 'LIKE', "%{$color}%");
                 }
@@ -99,7 +101,7 @@ class SearchProductsController extends Controller
       $seller = $seller->get();
 
         $products = products::all();
-          return view('marketplace.searchSeller', ['products' => $products, 'seller' => $seller]);
+          return view('marketplace.searchSeller', ['products' => $products, 'sellers' => $seller]);
                
 
       }  
